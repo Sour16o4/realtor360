@@ -25,6 +25,7 @@ export default function AttorneyFirmsPage() {
         columns={columns}
         rows={attorneyFirms}
         rowKey={(f) => f.id}
+        rowHref={(f) => `/attorney-firms/${f.id}`}
         rowClassName="h-74 pl-17 pt-22"
         bodyClassName="mt-3"
       />
