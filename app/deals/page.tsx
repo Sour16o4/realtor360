@@ -43,6 +43,7 @@ export default function DealsPage() {
         columns={columns}
         rows={deals}
         rowKey={(d) => d.id}
+        rowHref={(d) => `/deals/${d.id}`}
         rowClassName="h-74 pl-17 pt-22"
         bodyClassName="mt-3"
       />
