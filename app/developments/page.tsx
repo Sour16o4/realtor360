@@ -43,7 +43,7 @@ export default function DevelopmentsPage() {
         columns={columns}
         rows={developments}
         rowKey={(_, i) => String(i)}
-        rowClassName="h-153 pt-25 first:pt-28"
+        rowClassName="-ml-8 h-153 pl-24 pt-25 first:pt-28"
         bodyClassName="mt-3"
       />
     </ListPage>

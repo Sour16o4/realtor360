@@ -6,7 +6,7 @@ type ListTableProps<Row> = {
   columns: Column<Row>[];
   rows: Row[];
   rowKey: (row: Row, index: number) => string;
-  /** Height and top padding of a row; they differ per page in the design. */
+  /** Height, top padding and horizontal offset/padding of a row; they differ per page in the design. */
   rowClassName: string;
   /** Extra space between the header card and the first row. */
   bodyClassName?: string;
@@ -26,7 +26,7 @@ export default function ListTable<Row>({
   className,
 }: ListTableProps<Row>) {
   const gridTemplateColumns = columns.map((column) => `minmax(0, ${column.width}fr)`).join(" ");
-  const rowClasses = cn("grid items-start border-b border-black/12 -ml-8 pl-24", rowClassName);
+  const rowClasses = cn("grid items-start border-b border-black/12", rowClassName);
 
   return (
     <div className={cn("overflow-x-auto", className)}>

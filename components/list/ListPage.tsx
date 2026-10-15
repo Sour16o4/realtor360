@@ -13,6 +13,8 @@ type ListPageProps = {
   search?: string;
   /** Some pages place the divider under the header 8px higher. */
   compactHeader?: boolean;
+  /** Units page: filter groups sit closer together. */
+  tightFilters?: boolean;
   children: React.ReactNode;
 };
 
@@ -25,11 +27,12 @@ export default function ListPage({
   filterExtra,
   search,
   compactHeader = false,
+  tightFilters = false,
   children,
 }: ListPageProps) {
   return (
     <div className="flex flex-col lg:min-h-[calc(100vh-65px)] lg:flex-row">
-      <FilterSidebar groups={filters} searchPlaceholder={filterSearch}>
+      <FilterSidebar groups={filters} searchPlaceholder={filterSearch} tight={tightFilters}>
         {filterExtra}
       </FilterSidebar>
 

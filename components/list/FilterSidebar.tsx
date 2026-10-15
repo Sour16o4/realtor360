@@ -7,13 +7,15 @@ type FilterSidebarProps = {
   searchPlaceholder?: string;
   /** Extra controls rendered after the checkbox groups (e.g. a range). */
   children?: React.ReactNode;
+  /** Tighter group spacing (the units design). */
+  tight?: boolean;
 };
 
 /**
  * Left "Filters" panel shared by every list page.
  * It is a plain form: the browser's native reset clears the checkboxes, so no client state is needed.
  */
-export default function FilterSidebar({ groups, searchPlaceholder, children }: FilterSidebarProps) {
+export default function FilterSidebar({ groups, searchPlaceholder, children, tight = false }: FilterSidebarProps) {
   return (
     <aside className="shrink-0 bg-white pt-22 pr-13 pb-40 pl-26 lg:w-296">
       <h2 className="-mr-13 -ml-26 text-center text-24 font-semibold">Filters</h2>
@@ -31,7 +33,7 @@ export default function FilterSidebar({ groups, searchPlaceholder, children }: F
         )}
 
         {groups.map((group, index) => (
-          <fieldset key={group.title} className={cn(index === 0 ? (searchPlaceholder ? "mt-11" : "mt-31") : "mt-15")}>
+          <fieldset key={group.title} className={cn(index === 0 ? (searchPlaceholder ? "mt-11" : tight ? "mt-19" : "mt-31") : tight ? "mt-12" : "mt-15")}>
             <legend className="text-20 font-medium">{group.title}</legend>
             <div className="mt-12 flex flex-col gap-8">
               {group.options.map((option) => (
