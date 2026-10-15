@@ -65,8 +65,21 @@
   --shadow-menu: 0 2px 3px 0 rgb(0 0 0 / 0.15);
 }
 
+/*
+ * Inter has no rupee sign, so the browser falls back to another font whose taller line box pushes text down by 1px.
+ * This fallback gets Inter's ascent/descent, so lines containing a rupee sign keep the height of the design.
+ */
+@font-face {
+  font-family: "Rupee";
+  src: local("Noto Sans Regular"), local("NotoSans-Regular"), local("Arial"), local("Segoe UI"), local("DejaVu Sans");
+  unicode-range: U+20B9;
+  ascent-override: 96.9%;
+  descent-override: 24.1%;
+  line-gap-override: 0%;
+}
+
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Rupee", ui-sans-serif, system-ui, sans-serif;
   --font-nav: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 }
 
