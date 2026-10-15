@@ -104,11 +104,13 @@ type HeaderButtonProps = {
   wide?: boolean;
   /** Renders a link instead of a button. */
   href?: string;
+  /** Only works when the button is rendered from a client component. */
+  onClick?: () => void;
   className?: string;
   children: React.ReactNode;
 };
 
-export function HeaderButton({ variant = "light", dropdown = false, wide = false, href, className, children }: HeaderButtonProps) {
+export function HeaderButton({ variant = "light", dropdown = false, wide = false, href, onClick, className, children }: HeaderButtonProps) {
   const classes = cn(
     "flex h-31 items-center gap-3 rounded-5 text-14",
     wide ? "px-18" : "px-8",
@@ -126,7 +128,7 @@ export function HeaderButton({ variant = "light", dropdown = false, wide = false
       {content}
     </Link>
   ) : (
-    <button type="button" className={classes}>
+    <button type="button" onClick={onClick} className={classes}>
       {content}
     </button>
   );

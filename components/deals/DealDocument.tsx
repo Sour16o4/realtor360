@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HeaderButton } from "@/components/detail/RecordHeader";
+import PrintButton from "@/components/ui/PrintButton";
 
 type DealDocumentProps = {
   dealId: string;
@@ -23,7 +24,7 @@ export default function DealDocument({ dealId, title, titleTop, children }: Deal
         {/* The Deal Sheet frame is titled "Offer Form" too. */}
         <h1 className="ml-32 self-center text-20 font-semibold text-black">Offer Form</h1>
         <div className="mt-7 ml-auto flex items-start gap-15">
-          <HeaderButton wide className="opacity-80">Export PDF</HeaderButton>
+          <PrintButton>Export PDF</PrintButton>
           <HeaderButton wide className="opacity-80">Save Draft</HeaderButton>
         </div>
       </div>
