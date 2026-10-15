@@ -30,7 +30,6 @@ export default function BuildingsPage() {
         columns={columns}
         rows={buildings}
         rowKey={(b) => b.id}
-        rowHref={(b) => (b.id === "aster-tower" ? `/buildings/${b.id}` : undefined)}
         rowClassName="-ml-8 h-150 pl-24 pt-25"
       />
     </ListPage>

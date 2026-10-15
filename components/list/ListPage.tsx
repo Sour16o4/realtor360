@@ -40,7 +40,7 @@ export default function ListPage({
         <ListHeader title={title} createLabel={createLabel} searchPlaceholder={search} className="px-16 lg:pr-25 lg:pl-38" />
         <hr className={cn("border-black/12", compactHeader ? "mt-14" : "mt-22")} />
         <div className="px-16 pt-20 lg:pr-25 lg:pl-38">{children}</div>
-        <Pagination className="mt-auto self-center pt-40 lg:pr-150" />
+        <Pagination className="mt-auto self-center pt-26 lg:pr-150" />
       </main>
     </div>
   );
