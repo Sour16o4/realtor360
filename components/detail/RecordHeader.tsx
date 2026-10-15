@@ -102,21 +102,32 @@ type HeaderButtonProps = {
   dropdown?: boolean;
   /** Wider side padding (the "Edit" button on the building and contact pages). */
   wide?: boolean;
+  /** Renders a link instead of a button. */
+  href?: string;
+  className?: string;
   children: React.ReactNode;
 };
 
-export function HeaderButton({ variant = "light", dropdown = false, wide = false, children }: HeaderButtonProps) {
-  return (
-    <button
-      type="button"
-      className={cn(
-        "flex h-31 items-center gap-3 rounded-5 text-14",
-        wide ? "px-18" : "px-8",
-        variant === "gold" ? "bg-gold font-medium text-white" : "bg-cream",
-      )}
-    >
+export function HeaderButton({ variant = "light", dropdown = false, wide = false, href, className, children }: HeaderButtonProps) {
+  const classes = cn(
+    "flex h-31 items-center gap-3 rounded-5 text-14",
+    wide ? "px-18" : "px-8",
+    variant === "gold" ? "bg-gold font-medium text-white" : "bg-cream",
+    className,
+  );
+  const content = (
+    <>
       {children}
       {dropdown && <Image src="/icons/arrow-drop-down.svg" alt="" width={16} height={16} />}
+    </>
+  );
+  return href ? (
+    <Link href={href} className={classes}>
+      {content}
+    </Link>
+  ) : (
+    <button type="button" className={classes}>
+      {content}
     </button>
   );
 }
