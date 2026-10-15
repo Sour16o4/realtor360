@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import ListPage from "@/components/list/ListPage";
 import { leadFilters, leads } from "@/data/leads";
 
@@ -8,11 +9,14 @@ export default function LeadsPage() {
       {/* The lead rows span the whole main area, so cancel the page's content padding. */}
       <div className="-mx-16 -mt-20 lg:-mr-25 lg:-ml-38">
         {leads.map((lead) => (
-          <div key={lead.id} className="relative h-136 border-b border-black/12 pt-21 pl-16 lg:pl-38">
+          <div key={lead.id} className="relative h-136 border-b border-black/12 pt-21 pl-16 hover:bg-white/60 lg:pl-38">
             <div className="flex gap-24">
               <Image src={lead.photo} alt="" width={82} height={82} className="shrink-0 rounded-full object-cover" style={{ width: 82, height: 82 }} />
               <div>
-                <p className="text-16 font-semibold">{lead.name}</p>
+                {/* The link covers the whole row; the remove button sits above it. */}
+                <Link href={`/leads/${lead.id}`} className="block text-16 font-semibold after:absolute after:inset-0">
+                  {lead.name}
+                </Link>
                 <p className="mt-5 text-14 text-subtle">
                   <span className="font-medium">Email:</span> {lead.email}
                 </p>
@@ -29,7 +33,7 @@ export default function LeadsPage() {
                 </div>
               </div>
             </div>
-            <button type="button" aria-label="Remove lead" className="absolute top-21 right-16 lg:right-25">
+            <button type="button" aria-label="Remove lead" className="absolute top-21 right-16 z-10 lg:right-25">
               <Image src="/icons/remove.svg" alt="" width={28} height={28} />
             </button>
           </div>
