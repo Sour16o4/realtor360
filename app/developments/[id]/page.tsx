@@ -68,7 +68,7 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
             subtitle="Essential development details at a glance"
             paddingTop={57}
             subtitleWidth={250} // the design wraps this subtitle after "at"
-            titleShift={{ y: -24 }}
+            titleShift={{ y: -22 }}
           >
             <FieldList
               offset={21}
@@ -90,7 +90,7 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
             />
           </DetailSection>
 
-          <DetailSection title="Address Information" subtitle="Where the development is located" titleShift={{ y: 12 }}>
+          <DetailSection title="Address Information" subtitle="Where the development is located" titleShift={{ y: 18 }}>
             <FieldList
               offset={39}
               columnGap={77}
