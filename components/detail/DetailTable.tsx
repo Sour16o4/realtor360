@@ -13,7 +13,7 @@ type DetailTableProps = {
 /** Plain table of an overview section: grey headings (18/600), black values (18/400). */
 export default function DetailTable({ columns, headings, rows, rowGap = 20, headingGap }: DetailTableProps) {
   return (
-    <div className="grid text-18 leading-22" style={{ gridTemplateColumns: columns, rowGap }}>
+    <div className="grid text-18 leading-22 text-black" style={{ gridTemplateColumns: columns, rowGap }}>
       {headings.map((heading) => (
         <span
           key={heading}

@@ -60,15 +60,15 @@ export default async function LeadDetailPage({ params, searchParams }: PageProps
           <DetailSection
             title="Basic Details"
             subtitle="Key development highlights"
-            paddingTop={29}
-            paddingBottom={33}
-            titleShift={{ x: -20, y: -18 }}
+            paddingTop={31}
+            paddingBottom={30}
+            titleShift={{ x: -20, y: -19 }}
           >
             <FieldList
               gap={[61, 32]}
               rowGap={20}
-              offset={78}
-              columnGap={43}
+              offset={82}
+              columnGap={41}
               widths={[344, 257]}
               columns={[
                 [
@@ -90,9 +90,9 @@ export default async function LeadDetailPage({ params, searchParams }: PageProps
             title="Address Information"
             subtitle="Direct and indirect communication information."
             paddingTop={42}
-            paddingBottom={47}
+            paddingBottom={46}
             titleWidth={250}
-            titleShift={{ y: 2 }}
+            titleShift={{ y: 3 }}
           >
             <FieldList
               rowGap={20}
@@ -117,9 +117,9 @@ export default async function LeadDetailPage({ params, searchParams }: PageProps
             title="Requirement Detail"
             subtitle="Direct and indirect communication information."
             paddingTop={36}
-            paddingBottom={30}
+            paddingBottom={29}
             titleWidth={250}
-            titleShift={{ y: -19 }}
+            titleShift={{ y: -18 }}
           >
             <FieldList
               rowGap={20}
@@ -138,8 +138,8 @@ export default async function LeadDetailPage({ params, searchParams }: PageProps
           <DetailSection
             title="Visit Summary"
             subtitle="Direct and indirect communication information."
-            paddingTop={40}
-            paddingBottom={34}
+            paddingTop={39}
+            paddingBottom={33}
             titleWidth={250}
             titleShift={{ y: -18 }}
           >
@@ -151,13 +151,13 @@ export default async function LeadDetailPage({ params, searchParams }: PageProps
               columns={[
                 [
                   ["Days Visited", visit.daysVisited],
-                  ["Number of Chats", visit.chats],
-                  ["First Visit", visit.firstVisit],
+                  ["Number of Chats", visit.chats, 23],
+                  ["First Visit", visit.firstVisit, 17],
                   ["Next Task", visit.nextTask],
                 ],
                 [
                   ["Most recent Visit", visit.mostRecentVisit],
-                  ["Referrer", visit.referrer],
+                  ["Referrer", visit.referrer, 23],
                 ],
               ]}
             />

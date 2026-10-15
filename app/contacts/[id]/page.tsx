@@ -58,8 +58,8 @@ export default async function ContactDetailPage({ params, searchParams }: PagePr
           <DetailSection
             title="Basic Details"
             subtitle="Key development highlights"
-            paddingTop={29}
-            paddingBottom={31}
+            paddingTop={27}
+            paddingBottom={30}
             titleShift={{ x: -20, y: -18 }}
           >
             <FieldList
@@ -82,9 +82,9 @@ export default async function ContactDetailPage({ params, searchParams }: PagePr
             title="Contact Information"
             subtitle="Direct and indirect communication information."
             paddingTop={31}
-            paddingBottom={47}
+            paddingBottom={46}
             titleWidth={250}
-            titleShift={{ y: 22 }}
+            titleShift={{ y: 23 }}
           >
             <FieldList
               offset={123}
@@ -103,14 +103,14 @@ export default async function ContactDetailPage({ params, searchParams }: PagePr
             id="deals"
             title="Deals"
             subtitle="Associated transactions or deal stages with the contact."
-            paddingTop={16}
-            paddingBottom={23}
+            paddingTop={17}
+            paddingBottom={22}
             titleWidth={224}
             titleShift={{ x: -13, y: -28 }}
           >
             <div className="mr-45 mb-16 flex justify-end gap-10 text-14">
-              <button type="button" className="h-31 rounded-5 bg-cream px-18">New</button>
-              <button type="button" className="h-31 rounded-5 bg-cream px-18">Edit</button>
+              <button type="button" className="h-31 w-67 rounded-5 bg-cream">New</button>
+              <button type="button" className="h-31 w-62 rounded-5 bg-cream">Edit</button>
             </div>
             <div className="ml-21">
               <DetailTable

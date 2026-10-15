@@ -26,8 +26,9 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
   const { address, attorney } = detail;
   const website = <span className="text-16 text-gold underline">{development.website}</span>;
 
+  // The design's Notes frame has a slightly different sidebar spacing and sits its tabs 3px lower than the Overview frame.
   return (
-    <DetailPage related={detail.related}>
+    <DetailPage related={detail.related} listTop={tab === "notes" ? 46 : undefined} listGap={tab === "notes" ? 37 : undefined} addRelatedGap={tab === "notes" ? 57 : undefined}>
       <RecordHeader
         backHref="/developments"
         image={development.image}
@@ -42,7 +43,7 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
         <HeaderText title={development.name} lines={[["Email", development.email], ["Website", website]]} />
       </RecordHeader>
 
-      <Tabs active={tab} />
+      <Tabs active={tab} className={tab === "notes" ? "mt-3 -mb-3" : undefined} />
 
       {tab === "overview" && (
         <>
@@ -73,7 +74,7 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
             <FieldList
               offset={21}
               widths={[420, 346]}
-              columnGap={-13} // the second column starts slightly under the first one's long website value
+              columnGap={-16} // the second column starts slightly under the first one's long website value
               columns={[
                 [
                   ["Development Owner", detail.owner],
@@ -85,16 +86,16 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
                 [
                   ["Development Name", development.name],
                   ["No.of Buildings", development.buildings],
-                  ["City", development.city],
+                  ["City", development.city, 23],
                 ],
               ]}
             />
           </DetailSection>
 
-          <DetailSection title="Address Information" subtitle="Where the development is located" titleShift={{ y: 18 }}>
+          <DetailSection title="Address Information" subtitle="Where the development is located" paddingBottom={44} titleShift={{ x: 3, y: 18 }}>
             <FieldList
               offset={39}
-              columnGap={77}
+              columnGap={73}
               widths={[406, 202]}
               columns={[
                 [
@@ -110,7 +111,7 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
             />
           </DetailSection>
 
-          <DetailSection title="Attorney Information" subtitle="Project's legal advisor information" titleShift={{ y: 17 }}>
+          <DetailSection title="Attorney Information" subtitle="Project's legal advisor information" paddingBottom={47} titleShift={{ x: 4, y: 19 }}>
             <FieldList
               offset={56}
               columns={[
@@ -128,9 +129,10 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
             title="Buildings"
             subtitle="Details of buildings within the development"
             paddingTop={26}
+            paddingBottom={40}
             titleShift={{ y: 10 }}
           >
-            <div className="ml-34 grid grid-cols-[288px_169px_114px_1fr] gap-y-21 text-18 leading-22 whitespace-nowrap">
+            <div className="ml-34 grid grid-cols-[288px_169px_114px_1fr] gap-y-21 text-18 leading-22 whitespace-nowrap text-black">
               <span />
               {["No. of Floors", "Status", "Created Time"].map((heading) => (
                 <span key={heading} className="mb-5 font-semibold text-subtle">
@@ -139,7 +141,7 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
               ))}
               {detail.buildings.map((building) => (
                 <div key={building.name} className="contents">
-                  <span>{building.name}</span>
+                  <span className="font-semibold">{building.name}</span>
                   <span>{building.floors}</span>
                   <span>{building.status}</span>
                   <span className="flex gap-10">

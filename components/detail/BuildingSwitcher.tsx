@@ -42,7 +42,7 @@ export default function BuildingSwitcher({ options }: BuildingSwitcherProps) {
                 onClick={() => setOpen(false)}
                 className="flex flex-col gap-5 rounded-10 p-20 hover:bg-[#f4f4f4]"
               >
-                <span className="text-16 leading-normal font-semibold text-black">{option.name}</span>
+                <span className="text-16 font-semibold text-black">{option.name}</span>
                 <span className="text-14 text-subtle">
                   <span className="font-medium">Development:</span> {option.development}
                 </span>

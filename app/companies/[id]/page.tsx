@@ -242,7 +242,7 @@ export default async function CompanyDetailPage({ params, searchParams }: PagePr
             titleShift={{ x: 41, y: -20 }}
           >
             {/* Name is right-aligned in the design, the other columns start at their heading. The design wraps names, roles and emails inside narrow text boxes, so they wrap here too. */}
-            <div className="ml-59 grid grid-cols-[168px_81px_190px_186px_1fr] gap-y-22 text-18 leading-22">
+            <div className="ml-59 grid grid-cols-[168px_81px_190px_186px_1fr] gap-y-22 text-18 leading-22 text-black">
               {["Name", "Role", "Email", "Phone", "Status"].map((heading) => (
                 <span key={heading} className={`mb-4 font-semibold text-subtle ${heading === "Name" ? "w-113 text-right" : ""}`}>
                   {heading}

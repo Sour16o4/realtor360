@@ -27,7 +27,7 @@ export default function FieldList({ columns, gap = 35, offset = 0, columnGap = 0
       {columns.map((fields, index) => (
         <dl
           key={index}
-          className={`grid items-center text-18 leading-22 ${widths?.[index] ? "shrink-0 grid-cols-[auto_minmax(0,1fr)] break-words" : "grid-cols-[auto_auto] whitespace-nowrap"}`}
+          className={`grid items-center text-18 leading-22 text-black ${widths?.[index] ? "shrink-0 grid-cols-[auto_minmax(0,1fr)] break-words" : "grid-cols-[auto_auto] whitespace-nowrap"}`}
           style={{ width: widths?.[index], columnGap: Array.isArray(gap) ? gap[index] : gap, rowGap, marginLeft: index > 0 ? columnGap : 0 }}
         >
           {fields.map(([label, value, gapBefore]) => {

@@ -64,8 +64,8 @@ export default async function UnitDetailPage({ params, searchParams }: PageProps
             title="Basic Details"
             subtitle="Key development highlights"
             paddingTop={29}
-            paddingBottom={29}
-            titleShift={{ x: -22 }}
+            paddingBottom={27}
+            titleShift={{ x: -22, y: -1 }}
           >
             <FieldList
               gap={61}
@@ -92,9 +92,9 @@ export default async function UnitDetailPage({ params, searchParams }: PageProps
             title="Building & Development Info"
             subtitle="Direct and indirect communication information."
             paddingTop={39}
-            paddingBottom={28}
+            paddingBottom={27}
             titleWidth={272}
-            titleShift={{ x: -31, y: 13 }}
+            titleShift={{ x: -31, y: 14 }}
           >
             <FieldList
               gap={61}
@@ -117,9 +117,9 @@ export default async function UnitDetailPage({ params, searchParams }: PageProps
             title="Assigned Broker / Sales Agent"
             subtitle="Direct and indirect communication information."
             paddingTop={37}
-            paddingBottom={34}
+            paddingBottom={33}
             titleWidth={298}
-            titleShift={{ x: 21 }}
+            titleShift={{ x: 21, y: 1 }}
           >
             <FieldList
               gap={61}
@@ -141,8 +141,8 @@ export default async function UnitDetailPage({ params, searchParams }: PageProps
             title="Deals Associated"
             subtitle="Direct and indirect communication information."
             paddingTop={22}
-            paddingBottom={37}
-            titleShift={{ x: -1, y: 10 }}
+            paddingBottom={36}
+            titleShift={{ x: -1, y: 11 }}
           >
             <div className="ml-164">
               <DetailTable
@@ -162,8 +162,8 @@ export default async function UnitDetailPage({ params, searchParams }: PageProps
             id="add-on-units"
             title="Add-on Units Associated"
             subtitle="Direct and indirect communication information."
-            paddingTop={21}
-            paddingBottom={40}
+            paddingTop={20}
+            paddingBottom={39}
             titleShift={{ x: 1, y: 12 }}
           >
             <div className="ml-167">

@@ -45,7 +45,9 @@ export default async function AttorneyFirmDetailPage({ params, searchParams }: P
           linesClassName=""
         >
           <p className="mt-6 text-14 leading-17 text-subtle/60">{detail.services}</p>
-          <p className="mt-10 text-16 leading-19 text-subtle">Email: {firm.email}</p>
+          <p className="mt-10 text-16 leading-19 text-subtle">
+            <span className="font-medium">Email:</span> {firm.email}
+          </p>
         </HeaderText>
       </RecordHeader>
 

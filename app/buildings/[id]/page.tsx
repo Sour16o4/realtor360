@@ -78,6 +78,7 @@ export default async function BuildingDetailPage({ params, searchParams }: PageP
             subtitle="Essential development details at a glance"
             paddingTop={57}
             titleWidth={250} // the design wraps this subtitle after "at"
+            paddingBottom={42}
             titleShift={{ y: 7 }}
           >
             <FieldList
@@ -99,12 +100,12 @@ export default async function BuildingDetailPage({ params, searchParams }: PageP
             />
           </DetailSection>
 
-          <DetailSection id="units" title="Units" subtitle="Details of Units within the Building" titleWidth={195} paddingTop={20} titleShift={{ x: -28, y: -18 }}>
-            <div className="mr-13 mb-15 flex justify-end gap-15 text-14">
-              <button type="button" className="h-31 rounded-5 bg-cream px-20">New</button>
-              <button type="button" className="h-31 rounded-5 bg-cream px-16">Edit</button>
+          <DetailSection id="units" title="Units" subtitle="Details of Units within the Building" titleWidth={195} paddingTop={20} paddingBottom={29} titleShift={{ x: -28, y: -17 }}>
+            <div className="mr-12 mb-15 flex justify-end gap-10 text-14">
+              <button type="button" className="h-31 w-67 rounded-5 bg-cream">New</button>
+              <button type="button" className="h-31 w-62 rounded-5 bg-cream">Edit</button>
             </div>
-            <div className="-ml-15 grid grid-cols-[151px_158px_136px_122px_100px_100px] gap-y-20 text-18 leading-22">
+            <div className="-ml-15 grid grid-cols-[151px_158px_136px_122px_100px_100px] gap-y-20 text-18 leading-22 text-black">
               <span />
               {unitColumns.map((heading) => (
                 <span key={heading} className="mb-11 font-semibold whitespace-pre-line text-subtle">

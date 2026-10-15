@@ -88,5 +88,11 @@ const designedDevelopmentDetail: DevelopmentDetail = {
 
 /** Every row of the list has a page; the other four rows reuse the designed page as a template. */
 export const developmentDetails: Record<string, DevelopmentDetail> = Object.fromEntries(
-  developments.map((d) => [d.id, { ...designedDevelopmentDetail, id: d.id }]),
+  developments.map((d) => [
+    d.id,
+    // The designed page keeps the design's attorney firm; the other rows show the firm of their list row.
+    d.id === designedDevelopmentDetail.id
+      ? designedDevelopmentDetail
+      : { ...designedDevelopmentDetail, id: d.id, attorney: { ...designedDevelopmentDetail.attorney, firm: d.attorneyFirm } },
+  ]),
 );
