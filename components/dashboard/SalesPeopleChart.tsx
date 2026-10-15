@@ -6,6 +6,8 @@ import ChartLegend from "./ChartLegend";
 
 const TICKS = [0, 2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20];
 const MAX = TICKS[TICKS.length - 1];
+/** The design's tick labels are placed by hand and are not evenly spaced: px each label sits left of / right of its gridline. */
+const LABEL_SHIFT = [1, -2, -4.5, -7.5, -8.5, -5.5, -3, 0, 2.5];
 const SERIES = [...developments].reverse();
 
 type SalesPeopleChartProps = {
@@ -21,13 +23,16 @@ export default function SalesPeopleChart({ plotHeight = 74, className }: SalesPe
           Deal Owner
         </AxisTitle>
 
-        {TICKS.map((tick) => (
+        {TICKS.map((tick, index) => (
           <span
             key={tick}
             className="absolute top-0 h-full w-1 bg-grid"
             style={{ left: `${(tick / MAX) * 100}%` }}
           >
-            <span className="absolute top-full mt-4 -translate-x-1/2 text-12 leading-18 font-medium text-muted">
+            <span
+              className="absolute top-full mt-[5.5px] -translate-x-1/2 text-12 leading-18 font-medium text-muted"
+              style={{ marginLeft: LABEL_SHIFT[index] }}
+            >
               {tick}
             </span>
           </span>
