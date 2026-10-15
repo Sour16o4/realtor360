@@ -159,8 +159,7 @@ const month = (date: string) => {
   const [, m, y] = date.split("/");
   return `${new Date(2000, Number(m) - 1).toLocaleString("en-US", { month: "long" })} ${y}`;
 };
-/** Deals have no stage or date of their own in the list; these come from the deal's page data (the date of its last stage). */
-const dealStage = (d: Deal) => dealDetails[d.id].stage;
+/** Deals have no date of their own in the list; it comes from the deal's page data (the date of its last stage). */
 const dealMonth = (d: Deal) => month(dealDetails[d.id].stageHistory.at(-1)!.date);
 
 const sourceCol = (header: string, get: (l: ReportLead) => string, width: number, breakAll = false): Col<ReportLead> => ({ header, get, width, breakAll });
@@ -181,7 +180,7 @@ export const reportTables: Record<string, ReportTable> = {
   "leads-by-status": grouped(leads, leadStatus, leadCols),
   "deal-status-summary": grouped(deals, dealCols.status, without(dealList, dealCols.status)),
   "deals-by-owner": grouped(deals, dealCols.owner, without(dealList, dealCols.owner)),
-  "deals-closing": grouped(deals, { header: "Stage", get: dealStage }, dealList),
+  "deals-closing": grouped(deals, dealCols.status, dealList),
   "deal-value-trend": grouped(deals, { header: "Month", get: dealMonth }, dealList),
   "unit-sales": grouped(units, unitCols.building, without(unitList, unitCols.building)),
   "unit-status": grouped(units, unitCols.status, without(unitList, unitCols.status)),
