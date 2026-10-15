@@ -5,13 +5,14 @@ import FilterSidebar from "@/components/list/FilterSidebar";
 import Pagination from "@/components/list/Pagination";
 import { ACTIVITY_TABS, activitiesByTab, activityFilters, type ActivityTab } from "@/data/activities";
 import { cn } from "@/lib/cn";
+import { currentPage, reorder } from "@/lib/search";
 
 const CREATE_BUTTONS = ["Add Task", "Add Call", "Add Meeting"];
 
-export default async function ActivitiesPage({ searchParams }: { searchParams: Promise<{ tab?: string }> }) {
-  const { tab } = await searchParams;
+export default async function ActivitiesPage({ searchParams }: { searchParams: Promise<{ tab?: string; page?: string }> }) {
+  const { tab, page } = await searchParams;
   const current: ActivityTab = ACTIVITY_TABS.find((item) => item.id === tab)?.id ?? "customers";
-  const activities = activitiesByTab[current];
+  const activities = reorder(activitiesByTab[current], currentPage(page, 3));
 
   return (
     <div className="flex flex-col lg:min-h-[calc(100vh-65px)] lg:flex-row">

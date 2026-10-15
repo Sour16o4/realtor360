@@ -4,7 +4,7 @@ import RecordName from "@/components/list/RecordName";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { contactFilters, contacts, type Contact } from "@/data/contacts";
 import type { Column } from "@/data/types";
-import { pageCount, searchRows } from "@/lib/search";
+import { listRows } from "@/lib/search";
 
 /** Cells after the name start 6px lower than the name in the design. */
 const lower = (content: React.ReactNode) => <div className="pt-6">{content}</div>;
@@ -23,11 +23,11 @@ const columns: Column<Contact>[] = [
   { header: "Assigned to", width: 123, render: (c) => lower(c.assignedTo) },
 ];
 
-export default async function ContactsPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
-  const { q } = await searchParams;
-  const rows = searchRows(contacts, q, (row) => row.name);
+export default async function ContactsPage({ searchParams }: { searchParams: Promise<{ q?: string; page?: string }> }) {
+  const { q, page } = await searchParams;
+  const { rows, pages } = listRows(contacts, q, page, (row) => row.name);
   return (
-    <ListPage pages={pageCount(rows.length, !!q)}
+    <ListPage pages={pages}
       title="All Contacts"
       createLabel="Create Contact"
       filters={contactFilters}

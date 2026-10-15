@@ -3,7 +3,7 @@ import ListTable from "@/components/list/ListTable";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { dealFilters, deals, type Deal } from "@/data/deals";
 import type { Column } from "@/data/types";
-import { pageCount, searchRows } from "@/lib/search";
+import { listRows } from "@/lib/search";
 
 const columns: Column<Deal>[] = [
   { header: "Deal Name", width: 342, render: (d) => <p className="text-16 font-semibold">{d.name}</p> },
@@ -30,11 +30,11 @@ const dealValueRange = (
   </fieldset>
 );
 
-export default async function DealsPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
-  const { q } = await searchParams;
-  const rows = searchRows(deals, q, (row) => row.name);
+export default async function DealsPage({ searchParams }: { searchParams: Promise<{ q?: string; page?: string }> }) {
+  const { q, page } = await searchParams;
+  const { rows, pages } = listRows(deals, q, page, (row) => row.name);
   return (
-    <ListPage pages={pageCount(rows.length, !!q)}
+    <ListPage pages={pages}
       title="All Deals"
       createLabel="Create Deals"
       filters={dealFilters}

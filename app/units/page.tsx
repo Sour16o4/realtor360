@@ -4,7 +4,7 @@ import ListTable from "@/components/list/ListTable";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { unitFilters, units, type Unit } from "@/data/units";
 import type { Column } from "@/data/types";
-import { pageCount, searchRows } from "@/lib/search";
+import { listRows } from "@/lib/search";
 
 const columns: Column<Unit>[] = [
   {
@@ -24,11 +24,11 @@ const columns: Column<Unit>[] = [
   { header: "Price", width: 116, render: (u) => <span className="-mt-3 block text-12">{u.price}</span> },
 ];
 
-export default async function UnitsPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
-  const { q } = await searchParams;
-  const rows = searchRows(units, q, (row) => row.name);
+export default async function UnitsPage({ searchParams }: { searchParams: Promise<{ q?: string; page?: string }> }) {
+  const { q, page } = await searchParams;
+  const { rows, pages } = listRows(units, q, page, (row) => row.name);
   return (
-    <ListPage pages={pageCount(rows.length, !!q)} title="All Units" createLabel="Create Units" filters={unitFilters} search="Search Unit" tightFilters actionsGap={20}>
+    <ListPage pages={pages} title="All Units" createLabel="Create Units" filters={unitFilters} search="Search Unit" tightFilters actionsGap={20}>
       <ListTable
         columns={columns}
         rows={rows}

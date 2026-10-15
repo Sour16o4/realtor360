@@ -3,7 +3,7 @@ import ListPage from "@/components/list/ListPage";
 import ListTable from "@/components/list/ListTable";
 import { developmentFilters, developments, type Development } from "@/data/developments";
 import type { Column } from "@/data/types";
-import { pageCount, searchRows } from "@/lib/search";
+import { listRows } from "@/lib/search";
 
 const columns: Column<Development>[] = [
   {
@@ -33,11 +33,11 @@ const columns: Column<Development>[] = [
   { header: "Starting Price", width: 165, className: "pl-17", render: (d) => d.startingPrice },
 ];
 
-export default async function DevelopmentsPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
-  const { q } = await searchParams;
-  const rows = searchRows(developments, q, (row) => row.name);
+export default async function DevelopmentsPage({ searchParams }: { searchParams: Promise<{ q?: string; page?: string }> }) {
+  const { q, page } = await searchParams;
+  const { rows, pages } = listRows(developments, q, page, (row) => row.name);
   return (
-    <ListPage pages={pageCount(rows.length, !!q)}
+    <ListPage pages={pages}
       title="Developments"
       createLabel="Create Development"
       filters={developmentFilters}
