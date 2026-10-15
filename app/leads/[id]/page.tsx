@@ -69,6 +69,7 @@ export default async function LeadDetailPage({ params, searchParams }: PageProps
               rowGap={20}
               offset={78}
               columnGap={43}
+              widths={[344, 257]}
               columns={[
                 [
                   ["Lead Name", lead.name],
@@ -97,6 +98,7 @@ export default async function LeadDetailPage({ params, searchParams }: PageProps
               rowGap={20}
               offset={141}
               columnGap={113}
+              widths={[242, 202]}
               columns={[
                 [
                   ["Street", address.street],
@@ -144,6 +146,7 @@ export default async function LeadDetailPage({ params, searchParams }: PageProps
             <FieldList
               rowGap={20}
               offset={64}
+              widths={[427, 192]}
               columnGap={-65} // the second column starts under the long "Next Task" value
               columns={[
                 [
