@@ -51,3 +51,7 @@ These are reproduced as they appear in Figma:
 - The attorney firm of the development list ("Lex & Co. Legal Partners") differs from the one on the development detail page ("NNC Law Firm").
 - Emails wrap in the middle of a word in the narrow (172px) boxes of the company contacts table.
 - The lead's preferred location is spelled "Begaluru".
+- The Activities "Others" pill has no prototype link or screen, so it is not clickable.
+- The Activities Owner Name filter does not list Jessica Chen, who is assigned on the Open Deals and Leads/Contacts cards.
+- The Activities Status filter has no "Not Started" option, though some cards have that status.
+- The Activities filter checkboxes toggle as in the prototype; the design defines no filtering rules, so the cards are not filtered.
