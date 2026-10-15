@@ -10,6 +10,10 @@ type RecordHeaderProps = {
   imageSize?: [width: number, height: number];
   /** Extra classes for the photo, e.g. a top margin. */
   imageClassName?: string;
+  /** Round photo (the lead page) instead of rounded corners. */
+  roundImage?: boolean;
+  /** Space (px) between the back button and the photo. */
+  imageGap?: number;
   /** Classes of the title block's wrapper (its distance from the top differs per page). */
   textClassName?: string;
   /** Usually a <HeaderText>; the buttons on the right go in `actions`. */
@@ -25,6 +29,8 @@ export default function RecordHeader({
   image,
   imageSize = [155, 115],
   imageClassName,
+  roundImage = false,
+  imageGap = 32,
   textClassName = image ? "pt-12" : "",
   children,
   actions,
@@ -41,8 +47,8 @@ export default function RecordHeader({
           alt=""
           width={imageSize[0]}
           height={imageSize[1]}
-          className={cn("ml-32 shrink-0 rounded-10 object-cover", imageClassName)}
-          style={{ width: imageSize[0], height: imageSize[1] }}
+          className={cn("shrink-0 object-cover", roundImage ? "rounded-full" : "rounded-10", imageClassName)}
+          style={{ width: imageSize[0], height: imageSize[1], marginLeft: imageGap }}
         />
       )}
       <div className={cn("min-w-0", image ? "ml-18" : "ml-32", textClassName)}>{children}</div>

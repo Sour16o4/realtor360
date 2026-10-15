@@ -10,9 +10,9 @@ export function parseTab(value: string | string[] | undefined): DetailTab {
 }
 
 /** Segmented control under the record header. Each tab is a link to ?tab=..., so no client state is needed. */
-export default function Tabs({ active }: { active: DetailTab }) {
+export default function Tabs({ active, className }: { active: DetailTab; className?: string }) {
   return (
-    <nav className="px-59 py-11">
+    <nav className={cn("px-59 py-11", className)}>
       <div className="flex max-w-1020 rounded-10 bg-white">
         {TABS.map((tab) => (
           <Link

@@ -50,7 +50,7 @@ export default async function ContactDetailPage({ params, searchParams }: PagePr
         </HeaderText>
       </RecordHeader>
 
-      <Tabs active={tab} />
+      <Tabs active={tab} className="mt-3" /> {/* the design leaves 3px more under the header here */}
 
       {tab === "overview" && (
         <>
