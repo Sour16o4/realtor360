@@ -1,6 +1,6 @@
-import Image from "next/image";
 import ListPage from "@/components/list/ListPage";
 import ListTable from "@/components/list/ListTable";
+import StarToggle from "@/components/list/StarToggle";
 import { reportFilters, reports, type Report } from "@/data/reports";
 import type { Column } from "@/data/types";
 
@@ -10,7 +10,7 @@ const columns: Column<Report>[] = [
     width: 272,
     render: (r) => (
       <div className="-mt-4 flex items-center gap-8">
-        <Image src="/icons/star.svg" alt="" width={26} height={26} />
+        <StarToggle name={r.name} />
         <p className="text-14 font-semibold">{r.name}</p>
       </div>
     ),
