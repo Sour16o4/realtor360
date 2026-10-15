@@ -41,7 +41,7 @@ export default function StatusBadge({ status, size = "md", className }: StatusBa
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-5 border whitespace-nowrap",
+        "inline-flex items-center rounded-5 border whitespace-nowrap text-ink",
         size === "md" ? "h-25 px-17 text-14" : "h-21 px-17 text-12",
         TONES[STATUS_TONE[status] ?? "gray"],
         className,
