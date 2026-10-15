@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ListPage from "@/components/list/ListPage";
 import ListTable from "@/components/list/ListTable";
 import StarToggle from "@/components/list/StarToggle";
@@ -12,7 +13,9 @@ const columns: Column<Report>[] = [
     render: (r) => (
       <div className="-mt-4 flex items-center gap-8">
         <StarToggle name={r.name} />
-        <p className="text-14 font-semibold">{r.name}</p>
+        <Link href={`/reports/${r.id}`} className="text-14 font-semibold">
+          {r.name}
+        </Link>
       </div>
     ),
   },
