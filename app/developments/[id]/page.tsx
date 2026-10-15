@@ -122,6 +122,7 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
           </DetailSection>
 
           <DetailSection
+            id="buildings"
             title="Buildings"
             subtitle="Details of buildings within the development"
             paddingTop={26}

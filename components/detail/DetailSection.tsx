@@ -26,7 +26,7 @@ export default function DetailSection({
   children,
 }: DetailSectionProps) {
   return (
-    <section id={id} className="mr-26 ml-37 flex items-center border-b border-subtle/30" style={{ paddingTop, paddingBottom }}>
+    <section id={id} className="mr-26 ml-37 flex scroll-mt-65 items-center border-b border-subtle/30" style={{ paddingTop, paddingBottom }}>
       <div className="w-308 shrink-0">
         <div className="mx-auto text-center" style={{ maxWidth: titleWidth, transform: `translate(${titleShift.x ?? 0}px, ${titleShift.y ?? 0}px)` }}>
           <h2 className="text-20 font-semibold">{title}</h2>

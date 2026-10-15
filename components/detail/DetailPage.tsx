@@ -1,7 +1,6 @@
+import Link from "next/link";
+import type { RelatedItem } from "@/data/types";
 import { cn } from "@/lib/cn";
-
-/** `href` makes the item a link, e.g. "#deals" to jump to a section of the page. */
-type RelatedItem = { label: string; count?: number; href?: string };
 
 type DetailPageProps = {
   related: RelatedItem[];
@@ -12,6 +11,12 @@ type DetailPageProps = {
   children: React.ReactNode;
 };
 
+/** Where a sidebar item leads: Notes, Activities and Attachments open their tab, "#section" jumps to a section of the Overview tab. */
+function relatedHref({ label, href }: RelatedItem) {
+  if (href) return `?tab=overview${href}`;
+  return ["Notes", "Activities", "Attachments"].includes(label) ? `?tab=${label.toLowerCase()}` : undefined;
+}
+
 /** Shell of every detail page: white "Related List" sidebar on the left, page content on the right. */
 export default function DetailPage({ related, compact = false, addRelatedGap = compact ? 56 : 54, children }: DetailPageProps) {
   return (
@@ -19,16 +24,19 @@ export default function DetailPage({ related, compact = false, addRelatedGap = c
       <aside className="shrink-0 bg-white pt-22 pb-40 pl-80 lg:w-296">
         <h2 className="w-137 text-center text-24 font-semibold">Related List</h2>
         <ul className={cn("flex flex-col", compact ? "mt-47 w-146 gap-37 pl-6" : "mt-39 gap-39")}>
-          {related.map(({ label, count, href }) => (
-            <li key={label} className="flex items-center gap-9 text-18 leading-22 font-medium">
-              {href ? <a href={href}>{label}</a> : label}
-              {count !== undefined && (
-                <span className="flex size-19 items-center justify-center rounded-5 bg-[#f3e3af] text-14 font-normal">
-                  {count}
-                </span>
-              )}
-            </li>
-          ))}
+          {related.map((item) => {
+            const href = relatedHref(item);
+            return (
+              <li key={item.label} className="flex items-center gap-9 text-18 leading-22 font-medium">
+                {href ? <Link href={href}>{item.label}</Link> : item.label}
+                {item.count !== undefined && (
+                  <span className="flex size-19 items-center justify-center rounded-5 bg-[#f3e3af] text-14 font-normal">
+                    {item.count}
+                  </span>
+                )}
+              </li>
+            );
+          })}
         </ul>
         <p className="-ml-80 text-center text-16 font-medium text-[#0077b5]" style={{ marginTop: addRelatedGap }}>
           Add Related List
