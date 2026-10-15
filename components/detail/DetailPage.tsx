@@ -8,6 +8,8 @@ type DetailPageProps = {
   compact?: boolean;
   /** Space (px) above "Add Related List"; the design uses a different value on some pages. */
   addRelatedGap?: number;
+  /** Width (px) of the sidebar list where the design has longer labels than the usual 146px. */
+  listWidth?: number;
   children: React.ReactNode;
 };
 
@@ -18,12 +20,14 @@ function relatedHref({ label, href }: RelatedItem) {
 }
 
 /** Shell of every detail page: white "Related List" sidebar on the left, page content on the right. */
-export default function DetailPage({ related, compact = false, addRelatedGap = compact ? 56 : 54, children }: DetailPageProps) {
+export default function DetailPage({ related, compact = false, addRelatedGap = compact ? 56 : 54, listWidth, children }: DetailPageProps) {
   return (
     <div className="flex flex-col lg:min-h-[calc(100vh-65px)] lg:flex-row">
       <aside className="shrink-0 bg-white pt-22 pb-40 pl-80 lg:w-296">
         <h2 className="w-137 text-center text-24 font-semibold">Related List</h2>
-        <ul className={cn("flex flex-col", compact ? "mt-47 w-146 gap-37 pl-6" : "mt-39 gap-39")}>
+        <ul className={cn("flex flex-col", compact ? "mt-47 w-146 gap-37 pl-6" : "mt-39 gap-39")}
+          style={listWidth ? { width: listWidth } : undefined}
+        >
           {related.map((item) => {
             const href = relatedHref(item);
             return (
