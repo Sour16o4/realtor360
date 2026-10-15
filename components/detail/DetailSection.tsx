@@ -1,0 +1,26 @@
+type DetailSectionProps = {
+  title: string;
+  subtitle: string;
+  /** Moves the title block (px); the design does not place it exactly centered in every section. */
+  titleShift?: { x?: number; y?: number };
+  /** Width of the subtitle (px) where the design wraps it earlier than usual. */
+  subtitleWidth?: number;
+  /** Top padding (px); the first section sits closer to the tabs. */
+  paddingTop?: number;
+  children: React.ReactNode;
+};
+
+/** One block of an overview: centered title and subtitle on the left, content on the right, divider below. */
+export default function DetailSection({ title, subtitle, titleShift = {}, subtitleWidth = 261, paddingTop = 48, children }: DetailSectionProps) {
+  return (
+    <section className="mr-26 ml-37 flex items-center border-b border-subtle/30 pb-46" style={{ paddingTop }}>
+      <div className="w-308 shrink-0">
+        <div className="mx-auto text-center" style={{ maxWidth: subtitleWidth, transform: `translate(${titleShift.x ?? 0}px, ${titleShift.y ?? 0}px)` }}>
+          <h2 className="text-20 font-semibold">{title}</h2>
+          <p className="mt-8 text-16 text-muted">{subtitle}</p>
+        </div>
+      </div>
+      <div className="min-w-0 flex-1">{children}</div>
+    </section>
+  );
+}
