@@ -74,7 +74,7 @@ export function HeaderText({
 }: HeaderTextProps) {
   return (
     <>
-      <div className="flex items-center gap-7">
+      <div className="relative flex items-center gap-7">
         <h1 className={cn("font-semibold text-black", titleClassName)}>{title}</h1>
         {titleAdornment}
       </div>
