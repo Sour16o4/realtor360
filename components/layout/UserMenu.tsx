@@ -5,11 +5,14 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Avatar from "@/components/ui/Avatar";
 
+/** Only Settings has a prototype link; the other items are plain buttons. */
 const MENU_ITEMS = [
-  { label: "User Profile", icon: "/icons/user.svg", href: "/settings" },
+  { label: "User Profile", icon: "/icons/user.svg" },
   { label: "Settings", icon: "/icons/settings.svg", href: "/settings" },
-  { label: "Sign out", icon: "/icons/sign-out.svg", href: "/" },
+  { label: "Sign out", icon: "/icons/sign-out.svg" },
 ];
+
+const ITEM_CLASS = "flex h-42 w-full items-center gap-10 rounded-10 px-20 text-left text-14 hover:bg-[#f4f4f4]";
 
 export default function UserMenu() {
   const [open, setOpen] = useState(false);
@@ -44,18 +47,27 @@ export default function UserMenu() {
 
       {open && (
         <ul className="absolute top-58 right-0 w-257 rounded-10 bg-white p-1 shadow-menu">
-          {MENU_ITEMS.map((item) => (
-            <li key={item.label}>
-              <Link
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="flex h-42 items-center gap-10 rounded-10 px-20 text-14 hover:bg-[#f4f4f4]"
-              >
+          {MENU_ITEMS.map((item) => {
+            const content = (
+              <>
                 <Image src={item.icon} alt="" width={18} height={18} />
                 {item.label}
-              </Link>
-            </li>
-          ))}
+              </>
+            );
+            return (
+              <li key={item.label}>
+                {item.href ? (
+                  <Link href={item.href} onClick={() => setOpen(false)} className={ITEM_CLASS}>
+                    {content}
+                  </Link>
+                ) : (
+                  <button type="button" className={ITEM_CLASS}>
+                    {content}
+                  </button>
+                )}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>
