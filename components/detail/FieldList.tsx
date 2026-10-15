@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 
-type Field = [label: string, value: React.ReactNode];
+/** `gapBefore` replaces the default 27px space above this row where the design differs. */
+type Field = [label: string, value: React.ReactNode, gapBefore?: number];
 
 type FieldListProps = {
   /** One or two columns of fields. */
@@ -23,12 +24,17 @@ export default function FieldList({ columns, gap = 35, offset = 0, columnGap = 0
           className="grid grid-cols-[auto_auto] gap-y-27 text-18 leading-22 whitespace-nowrap"
           style={{ columnGap: gap, marginLeft: index > 0 ? columnGap : 0 }}
         >
-          {fields.map(([label, value]) => (
-            <Fragment key={label}>
-              <dt className="text-right font-semibold text-subtle">{label}</dt>
-              <dd>{value}</dd>
-            </Fragment>
-          ))}
+          {fields.map(([label, value, gapBefore]) => {
+            const style = gapBefore === undefined ? undefined : { marginTop: gapBefore - 27 };
+            return (
+              <Fragment key={label}>
+                <dt className="text-right font-semibold text-subtle" style={style}>
+                  {label}
+                </dt>
+                <dd style={style}>{value}</dd>
+              </Fragment>
+            );
+          })}
         </dl>
       ))}
     </div>

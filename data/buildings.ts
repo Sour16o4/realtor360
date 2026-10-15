@@ -79,3 +79,36 @@ export const buildings: Building[] = [
     sold: 24,
   },
 ];
+
+export type BuildingDetail = {
+  id: string;
+  owner: string;
+  /** The Orchid Heights overview shows "Available", although the list says "Selling Fast". */
+  status: string;
+  website: string;
+  /** Items of the "Related List" sidebar; `count` is the badge next to the label. */
+  related: Array<{ label: string; count?: number }>;
+  /** The overview repeats some fields in two sections and the design gives them different values. */
+  overview: { floors: number; infoName: string; infoFloors: number };
+  units: Array<{ name: string; development: string; building: string; price: string; status: string; created: string }>;
+};
+
+const asterTowerDetail: BuildingDetail = {
+  id: "aster-tower",
+  owner: "Rohit Mehra",
+  status: "Available",
+  website: "www.sunriseenclave.com",
+  related: [{ label: "Notes" }, { label: "Units", count: 3 }, { label: "Activities" }, { label: "Attachments" }],
+  overview: { floors: 4, infoName: "Aster Tower", infoFloors: 6 },
+  units: [
+    { name: "Unit A- 101 (3 BHK)", development: "Sunrise Enclave", building: "Aster Tower", price: "Rs.1.45Cr", status: "Active", created: "12/06/18" },
+    { name: "Unit A- 205 (2 BHK)", development: "Sunrise Enclave", building: "Aster Tower", price: "Rs.98L", status: "Active", created: "07/06/18" },
+    { name: "Unit A- 307 (4 BHK+Study)", development: "Sunrise Enclave", building: "Aster Tower", price: "Rs.1.95Cr", status: "Active", created: "07/06/18" },
+  ],
+};
+
+/** The design's second overview (Orchid Heights) is the same page with another title, so the content is shared. */
+export const buildingDetails: Record<string, BuildingDetail> = {
+  "aster-tower": asterTowerDetail,
+  "orchid-heights": { ...asterTowerDetail, id: "orchid-heights" },
+};

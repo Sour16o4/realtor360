@@ -6,6 +6,12 @@ type RecordHeaderProps = {
   /** The list page the round back button returns to. */
   backHref: string;
   image?: string;
+  /** Photo size in px; the development page uses a larger one than the building page. */
+  imageSize?: [width: number, height: number];
+  /** Extra classes for the photo, e.g. a top margin. */
+  imageClassName?: string;
+  /** Classes of the title block's wrapper (its distance from the top differs per page). */
+  textClassName?: string;
   /** Usually a <HeaderText>; the buttons on the right go in `actions`. */
   children: React.ReactNode;
   actions?: React.ReactNode;
@@ -17,6 +23,9 @@ type RecordHeaderProps = {
 export default function RecordHeader({
   backHref,
   image,
+  imageSize = [155, 115],
+  imageClassName,
+  textClassName = image ? "pt-12" : "",
   children,
   actions,
   actionsClassName = "mb-13",
@@ -27,9 +36,16 @@ export default function RecordHeader({
         <Image src="/icons/back.svg" alt="" width={38} height={38} />
       </Link>
       {image && (
-        <Image src={image} alt="" width={155} height={115} className="ml-32 h-115 w-155 shrink-0 rounded-10 object-cover" />
+        <Image
+          src={image}
+          alt=""
+          width={imageSize[0]}
+          height={imageSize[1]}
+          className={cn("ml-32 shrink-0 rounded-10 object-cover", imageClassName)}
+          style={{ width: imageSize[0], height: imageSize[1] }}
+        />
       )}
-      <div className={cn("min-w-0", image ? "ml-18 pt-12" : "ml-32")}>{children}</div>
+      <div className={cn("min-w-0", image ? "ml-18" : "ml-32", textClassName)}>{children}</div>
       {actions && <div className={cn("ml-auto flex items-end gap-10 self-end pl-16", actionsClassName)}>{actions}</div>}
     </header>
   );
@@ -37,20 +53,32 @@ export default function RecordHeader({
 
 type HeaderTextProps = {
   title: string;
+  /** Shown right after the title, e.g. a dropdown arrow. */
+  titleAdornment?: React.ReactNode;
   titleClassName?: string;
   /** Lines under the title, e.g. [["Email", "a@b.com"]]; the label is medium weight, both at 60% opacity. */
   lines?: Array<[label: string, value: React.ReactNode]>;
-  /** Space between title and lines. */
+  /** Spacing and text size of the lines (margin above, gap between lines, font size). */
   linesClassName?: string;
   /** Anything below the lines, e.g. a status badge. */
   children?: React.ReactNode;
 };
 
-export function HeaderText({ title, titleClassName = "text-22", lines = [], linesClassName = "mt-11", children }: HeaderTextProps) {
+export function HeaderText({
+  title,
+  titleAdornment,
+  titleClassName = "text-22",
+  lines = [],
+  linesClassName = "mt-11 gap-8 text-16",
+  children,
+}: HeaderTextProps) {
   return (
     <>
-      <h1 className={cn("font-semibold text-black", titleClassName)}>{title}</h1>
-      <div className={cn("flex flex-col gap-8 text-16 text-subtle opacity-60", linesClassName)}>
+      <div className="flex items-center gap-7">
+        <h1 className={cn("font-semibold text-black", titleClassName)}>{title}</h1>
+        {titleAdornment}
+      </div>
+      <div className={cn("flex flex-col text-subtle opacity-60", linesClassName)}>
         {lines.map(([label, value]) => (
           <p key={label}>
             <span className="font-medium">{label}:</span> {value}
@@ -66,15 +94,18 @@ type HeaderButtonProps = {
   variant?: "gold" | "light";
   /** Adds the small dropdown arrow. */
   dropdown?: boolean;
+  /** Wider side padding (the "Edit" button on the building and contact pages). */
+  wide?: boolean;
   children: React.ReactNode;
 };
 
-export function HeaderButton({ variant = "light", dropdown = false, children }: HeaderButtonProps) {
+export function HeaderButton({ variant = "light", dropdown = false, wide = false, children }: HeaderButtonProps) {
   return (
     <button
       type="button"
       className={cn(
-        "flex h-31 items-center gap-3 rounded-5 px-8 text-14",
+        "flex h-31 items-center gap-3 rounded-5 text-14",
+        wide ? "px-18" : "px-8",
         variant === "gold" ? "bg-gold font-medium text-white" : "bg-cream",
       )}
     >

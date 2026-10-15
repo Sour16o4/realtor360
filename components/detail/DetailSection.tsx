@@ -13,7 +13,7 @@ type DetailSectionProps = {
 /** One block of an overview: centered title and subtitle on the left, content on the right, divider below. */
 export default function DetailSection({ title, subtitle, titleShift = {}, subtitleWidth = 261, paddingTop = 48, children }: DetailSectionProps) {
   return (
-    <section className="mr-26 ml-37 flex items-center border-b border-subtle/30 pb-46" style={{ paddingTop }}>
+    <section className="mr-26 ml-37 flex items-center border-b border-subtle/30 pb-43" style={{ paddingTop }}>
       <div className="w-308 shrink-0">
         <div className="mx-auto text-center" style={{ maxWidth: subtitleWidth, transform: `translate(${titleShift.x ?? 0}px, ${titleShift.y ?? 0}px)` }}>
           <h2 className="text-20 font-semibold">{title}</h2>
