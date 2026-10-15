@@ -17,8 +17,9 @@ export default function NavLinks() {
           <Link
             key={item.href}
             href={item.href}
+            style={{ width: item.width, marginLeft: item.gap }}
             className={cn(
-              "flex h-42 shrink-0 items-center rounded-10 px-12 font-nav text-14 whitespace-nowrap",
+              "flex h-42 shrink-0 items-center justify-center rounded-10 font-nav text-14 whitespace-nowrap",
               active ? "bg-gold font-semibold text-white" : "font-medium text-ink hover:bg-page",
             )}
           >

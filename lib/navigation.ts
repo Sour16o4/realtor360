@@ -1,17 +1,18 @@
-export type NavItem = { label: string; href: string };
+/** `width` and `gap` (space before the item) are the design's pill sizes in px, so the items line up with the Figma navbar. */
+export type NavItem = { label: string; width: number; gap: number; href: string };
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Developments", href: "/developments" },
-  { label: "Buildings", href: "/buildings" },
-  { label: "Units", href: "/units" },
-  { label: "Leads", href: "/leads" },
-  { label: "Companies", href: "/companies" },
-  { label: "Contacts", href: "/contacts" },
-  { label: "Deals", href: "/deals" },
-  { label: "Activities", href: "/activities" },
-  { label: "Attorney Firms", href: "/attorney-firms" },
-  { label: "Reports", href: "/reports" },
+  { label: "Home", width: 63, gap: 0, href: "/" },
+  { label: "Developments", width: 119, gap: 1, href: "/developments" },
+  { label: "Buildings", width: 83, gap: 2, href: "/buildings" },
+  { label: "Units", width: 60, gap: 0, href: "/units" },
+  { label: "Leads", width: 64, gap: 0, href: "/leads" },
+  { label: "Companies", width: 99, gap: 0, href: "/companies" },
+  { label: "Contacts", width: 86, gap: 0, href: "/contacts" },
+  { label: "Deals", width: 61, gap: 0, href: "/deals" },
+  { label: "Activities", width: 86, gap: 0, href: "/activities" },
+  { label: "Attorney Firms", width: 120, gap: 0, href: "/attorney-firms" },
+  { label: "Reports", width: 77, gap: 0, href: "/reports" },
 ];
 
 export function isActive(pathname: string, href: string) {
