@@ -189,3 +189,25 @@ export const reportTables: Record<string, ReportTable> = {
   "matters-by-firm": grouped(attorneyFirms, firmName, firmCols),
   "company-deals": grouped(companies, companyCols.type, without(Object.values(companyCols), companyCols.type)),
 };
+
+/** The Create Chart tiles, in the design's order. Only Vertical Bar and Donut Graph have a designed preview. */
+export const chartTypes = [
+  // The chart-*.svg files are named out of order (e.g. chart-funnel.svg draws the vertical bars), so each icon is listed here.
+  { id: "vertical-bar", label: "Vertical Bar", icon: "/icons/chart-funnel.svg" },
+  { id: "horizontal-bar", label: "Horizontal Bar", icon: "/icons/chart-donut.svg" },
+  { id: "line", label: "Line Graph", icon: "/icons/chart-vertical-bar.svg" },
+  { id: "donut", label: "Donut Graph", icon: "/icons/chart-horizontal-bar.svg" },
+  { id: "pie", label: "Pie Chart", icon: "/icons/chart-line.svg" },
+  { id: "area", label: "Area Chart", icon: "/icons/chart-pie.svg" },
+  { id: "funnel", label: "Funnel Chart", icon: "/icons/chart-area.svg" },
+] as const;
+
+export type ChartTypeId = (typeof chartTypes)[number]["id"];
+
+/** Callout labels of the 230px donut in the Create Chart preview (14px text), in px from the donut's top-left corner. */
+export const createChartCallouts: Record<string, { label: [number, number] }> = {
+  "Inbound Call": { label: [240, 35] },
+  Reference: { label: [261, 176] },
+  Website: { label: [-104, 66] },
+  Facebook: { label: [-103, 177] },
+};
