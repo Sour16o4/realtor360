@@ -42,3 +42,37 @@ export const contacts: Contact[] = [
   row("ravi-kapoor-2", "Ravi Kapoor", "Investor", "Active"),
   row("emily-mehra-2", "Emily Mehra", "Broker", "Active"),
 ];
+
+export type ContactDetail = {
+  id: string;
+  email: string;
+  createdDate: string;
+  city: string;
+  phone: string;
+  preferredContact: string;
+  /** Items of the "Related List" sidebar; `href` jumps to a section, `count` is the badge. */
+  related: Array<{ label: string; count?: number; href?: string }>;
+  deals: Array<{ name: string; development: string; unitType: string; value: string; status: string; followUp: string }>;
+};
+
+export const contactDetails: Record<string, ContactDetail> = {
+  "john-doe": {
+    id: "john-doe",
+    email: "john.doe@email.com",
+    createdDate: "12/06/2024",
+    city: "Bengaluru",
+    phone: "+91 98765 43210",
+    preferredContact: "Email / Phone",
+    related: [
+      { label: "Notes" },
+      { label: "Deals", count: 3, href: "#deals" },
+      { label: "Activities" },
+      { label: "Attachments" },
+    ],
+    deals: [
+      { name: "Villa Purchase - Sunrise", development: "Sunrise Enclave", unitType: "3 BHK Villa", value: "Rs. 1.95 Cr", status: "In Progress", followUp: "12 July 2025" },
+      { name: "Apartment - Orchid", development: "Orchid Heights", unitType: "2 BHK Flat", value: "Rs. 98 L", status: "Cold", followUp: "15 July 2025" },
+      { name: "Aster Tower Penthouse", development: "Aster Tower", unitType: "4 BHK Duplex", value: "Rs. 2.5 Cr", status: "Not Interested", followUp: "-" },
+    ],
+  },
+};

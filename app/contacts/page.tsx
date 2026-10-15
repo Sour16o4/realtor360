@@ -2,7 +2,7 @@ import ListPage from "@/components/list/ListPage";
 import ListTable from "@/components/list/ListTable";
 import RecordName from "@/components/list/RecordName";
 import StatusBadge from "@/components/ui/StatusBadge";
-import { contactFilters, contacts, type Contact } from "@/data/contacts";
+import { contactDetails, contactFilters, contacts, type Contact } from "@/data/contacts";
 import type { Column } from "@/data/types";
 
 /** Cells after the name start 6px lower than the name in the design. */
@@ -36,6 +36,7 @@ export default function ContactsPage() {
         columns={columns}
         rows={contacts}
         rowKey={(c) => c.id}
+        rowHref={(c) => (c.id in contactDetails ? `/contacts/${c.id}` : undefined)}
         rowClassName="h-91 pl-17 pt-21"
         bodyClassName="mt-4"
       />
