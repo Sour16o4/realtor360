@@ -49,13 +49,17 @@ export const dealsByStage: Array<{ stage: string } & DevelopmentCounts> = [
   { stage: "Offer Accepted", plaza: 3.8, garden: 7.2, none: 10 },
 ];
 
+export type SalesPersonDeals = { owner: string } & DevelopmentCounts;
+
 /** Record count per sales person (cumulative, like the stage chart). */
-export const dealsBySalesPerson: Array<{ owner: string } & DevelopmentCounts> = [
+export const dealsBySalesPerson: SalesPersonDeals[] = [
   { owner: "Rohit Mehra", plaza: 4.9, garden: 11.1, none: 17.8 },
   { owner: "Priya Nair", plaza: 2.3, garden: 7.9, none: 12.1 },
 ];
 
-export const dealsClosed = { closed: 42, inProgress: 132, fillPercent: 42.5 };
+export type DealsClosed = { closed: number; inProgress: number; fillPercent: number };
+
+export const dealsClosed: DealsClosed = { closed: 42, inProgress: 132, fillPercent: 42.5 };
 
 export const pipeline = [
   { development: "None", count: 14 },

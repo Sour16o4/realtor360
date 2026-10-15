@@ -28,18 +28,26 @@ function donutBackground() {
   return `conic-gradient(from ${START_ANGLE}deg, ${stops.join(", ")})`;
 }
 
+/** A callout placed in px (no scaling): label's top-left, and the arrow's left, top, width, height, from the donut's top-left. */
+export type CalloutPlacement = { label: [number, number]; arrow: [number, number, number, number] };
+
 type LeadSourceChartProps = {
   size?: number;
+  /** Space left of the donut inside the card's padding; without it the donut is centred. */
+  left?: number;
+  /** Exact callout positions from the design, for sizes where scaling Home's positions is not close enough. */
+  callouts?: Record<string, CalloutPlacement>;
+  menu?: boolean;
   className?: string;
 };
 
-export default function LeadSourceChart({ size = BASE_SIZE, className }: LeadSourceChartProps) {
+export default function LeadSourceChart({ size = BASE_SIZE, left, callouts, menu, className }: LeadSourceChartProps) {
   const scale = size / BASE_SIZE;
   const hole = (size * INNER_RATIO) / 2;
 
   return (
-    <Card title="Deals by Lead Source" className={cn("relative px-22 pt-13", className)}>
-      <div className="relative mx-auto mt-32" style={{ width: size, height: size }}>
+    <Card title="Deals by Lead Source" menu={menu} className={cn("relative px-22 pt-13", className)}>
+      <div className={cn("relative mt-32", left === undefined && "mx-auto")} style={{ width: size, height: size, marginLeft: left }}>
         <div
           className="size-full rounded-full"
           role="img"
@@ -52,7 +60,9 @@ export default function LeadSourceChart({ size = BASE_SIZE, className }: LeadSou
 
         {leadSources.map(({ label, count, percent }) => {
           const callout = CALLOUTS[label];
-          const [left, top, width, height] = callout.arrow.map((value) => value * scale);
+          const placed = callouts?.[label];
+          const labelAt = placed?.label ?? (callout.label.map((value) => value * scale) as [number, number]);
+          const [arrowLeft, top, width, height] = placed?.arrow ?? callout.arrow.map((value) => value * scale);
           return (
             <div key={label}>
               <Image
@@ -61,11 +71,11 @@ export default function LeadSourceChart({ size = BASE_SIZE, className }: LeadSou
                 width={width}
                 height={height}
                 className="absolute max-w-none"
-                style={{ left, top, width, height }}
+                style={{ left: arrowLeft, top, width, height }}
               />
               <p
                 className="absolute text-center text-10 whitespace-nowrap text-muted"
-                style={{ left: callout.label[0] * scale, top: callout.label[1] * scale }}
+                style={{ left: labelAt[0], top: labelAt[1] }}
               >
                 {label}
                 <br />

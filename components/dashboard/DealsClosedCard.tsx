@@ -1,5 +1,5 @@
 import Card from "@/components/ui/Card";
-import { dealsClosed } from "@/data/dashboard";
+import { dealsClosed, type DealsClosed } from "@/data/dashboard";
 import { cn } from "@/lib/cn";
 
 function Figure({ value, label }: { value: number; label: string }) {
@@ -11,12 +11,22 @@ function Figure({ value, label }: { value: number; label: string }) {
   );
 }
 
-export default function DealsClosedCard({ className }: { className?: string }) {
-  const { closed, inProgress, fillPercent } = dealsClosed;
+type DealsClosedCardProps = {
+  stats?: DealsClosed;
+  /** Sizes measured from the design (px); the defaults are Home's. */
+  barHeight?: number;
+  figuresGap?: number;
+  padRight?: number;
+  menu?: boolean;
+  className?: string;
+};
+
+export default function DealsClosedCard({ stats = dealsClosed, barHeight = 43, figuresGap = 3, padRight = 24, menu, className }: DealsClosedCardProps) {
+  const { closed, inProgress, fillPercent } = stats;
 
   return (
-    <Card title="Total Deals Closed" className={cn("pt-13 pr-24 pl-22", className)}>
-      <div className="relative mt-10 h-43 rounded-10 bg-track">
+    <Card title="Total Deals Closed" menu={menu} className={cn("pt-13 pl-22", className)} style={{ paddingRight: padRight }}>
+      <div className="relative mt-10 rounded-10 bg-track" style={{ height: barHeight }}>
         <div
           className="h-full rounded-10 bg-linear-to-r from-gold to-gold/20"
           style={{ width: `${fillPercent}%` }}
@@ -32,7 +42,7 @@ export default function DealsClosedCard({ className }: { className?: string }) {
           <span className="absolute bottom-0 left-0 size-3 rounded-full bg-gold" />
         </span>
       </div>
-      <div className="mt-3 flex items-center justify-between">
+      <div className="flex items-center justify-between" style={{ marginTop: figuresGap }}>
         <Figure value={closed} label="Closed Deals" />
         <Figure value={inProgress} label="On Progress" />
       </div>

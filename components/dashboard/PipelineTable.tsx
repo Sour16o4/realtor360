@@ -2,9 +2,9 @@ import Card from "@/components/ui/Card";
 import { pipeline } from "@/data/dashboard";
 import { cn } from "@/lib/cn";
 
-export default function PipelineTable({ className }: { className?: string }) {
+export default function PipelineTable({ padRight = 26, menu, className }: { padRight?: number; menu?: boolean; className?: string }) {
   return (
-    <Card title="Deals in Pipeline by Development" className={cn("pt-13 pr-26 pl-22", className)}>
+    <Card title="Deals in Pipeline by Development" menu={menu} className={cn("pt-13 pl-22", className)} style={{ paddingRight: padRight }}>
       <table className="mt-23 w-full text-14">
         <thead>
           <tr className="bg-page font-medium">

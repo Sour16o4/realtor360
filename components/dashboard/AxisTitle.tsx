@@ -4,9 +4,10 @@ type AxisTitleProps = {
   children: string;
   vertical?: boolean;
   className?: string;
+  style?: React.CSSProperties;
 };
 
-export default function AxisTitle({ children, vertical = false, className }: AxisTitleProps) {
+export default function AxisTitle({ children, vertical = false, className, style }: AxisTitleProps) {
   return (
     <span
       className={cn(
@@ -15,6 +16,7 @@ export default function AxisTitle({ children, vertical = false, className }: Axi
         vertical && "rotate-180 [writing-mode:vertical-rl]",
         className,
       )}
+      style={style}
     >
       {children}
     </span>
