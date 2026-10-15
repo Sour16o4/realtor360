@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
+import BuildingSwitcher from "@/components/detail/BuildingSwitcher";
 import DetailPage from "@/components/detail/DetailPage";
 import DetailSection from "@/components/detail/DetailSection";
 import FieldList from "@/components/detail/FieldList";
@@ -46,7 +46,7 @@ export default async function BuildingDetailPage({ params, searchParams }: PageP
       >
         <HeaderText
           title={building.name}
-          titleAdornment={<Image src="/icons/arrow-drop-down.svg" alt="" width={27} height={27} />}
+          titleAdornment={<BuildingSwitcher options={buildings.slice(0, 3)} />} // the design's dropdown lists the first three buildings
           lines={[["Development", building.development], ["Email", building.email]]}
           linesClassName="mt-4 gap-4 text-14 opacity-60"
         />
@@ -66,7 +66,7 @@ export default async function BuildingDetailPage({ params, searchParams }: PageP
                   ["Development Name", building.development],
                   ["No. of Floors", detail.overview.floors],
                   ["Development Website", website],
-                  ["Building Status", detail.status],
+                  ["Building Status", detail.status ?? building.status],
                   ["City", building.city],
                 ],
               ]}
@@ -87,18 +87,18 @@ export default async function BuildingDetailPage({ params, searchParams }: PageP
                 [
                   ["Building Owner", detail.owner],
                   ["Development Name", building.development],
-                  ["Building Status", detail.status],
+                  ["Building Status", detail.status ?? building.status],
                   ["Development Website", website, 19], // this row sits closer to the one above
                 ],
                 [
-                  ["Building Name", detail.overview.infoName],
+                  ["Building Name", detail.overview.infoName ?? building.name],
                   ["No. of Floors", detail.overview.infoFloors],
                 ],
               ]}
             />
           </DetailSection>
 
-          <DetailSection title="Units" subtitle="Details of Units within the Building" titleWidth={195} paddingTop={20} titleShift={{ x: -28, y: -18 }}>
+          <DetailSection id="units" title="Units" subtitle="Details of Units within the Building" titleWidth={195} paddingTop={20} titleShift={{ x: -28, y: -18 }}>
             <div className="mr-13 mb-15 flex justify-end gap-15 text-14">
               <button type="button" className="h-31 rounded-5 bg-cream px-20">New</button>
               <button type="button" className="h-31 rounded-5 bg-cream px-16">Edit</button>

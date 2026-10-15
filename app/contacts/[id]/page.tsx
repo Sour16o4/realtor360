@@ -41,7 +41,7 @@ export default async function ContactDetailPage({ params, searchParams }: PagePr
         <HeaderText
           title={contact.name}
           titleClassName="text-[26px]"
-          lines={[["Email", detail.email]]}
+          lines={[["Email", detail.email ?? contact.email]]}
           linesClassName="mt-4 text-16"
         >
           <div className="mt-20">
@@ -90,8 +90,8 @@ export default async function ContactDetailPage({ params, searchParams }: PagePr
               offset={123}
               columns={[
                 [
-                  ["Email", detail.email],
-                  ["Phone Number", detail.phone],
+                  ["Email", detail.email ?? contact.email],
+                  ["Phone Number", detail.phone ?? contact.phone],
                   ["Location/City", detail.city],
                   ["Preferred Contact Method", detail.preferredContact, 31], // this row sits slightly further down
                 ],

@@ -1,7 +1,7 @@
 import ListPage from "@/components/list/ListPage";
 import ListTable from "@/components/list/ListTable";
 import RecordName from "@/components/list/RecordName";
-import { buildingDetails, buildingFilters, buildings, type Building } from "@/data/buildings";
+import { buildingFilters, buildings, type Building } from "@/data/buildings";
 import type { Column } from "@/data/types";
 
 const columns: Column<Building>[] = [
@@ -30,7 +30,7 @@ export default function BuildingsPage() {
         columns={columns}
         rows={buildings}
         rowKey={(b) => b.id}
-        rowHref={(b) => (b.id in buildingDetails ? `/buildings/${b.id}` : undefined)}
+        rowHref={(b) => `/buildings/${b.id}`}
         rowClassName="-ml-8 h-150 pl-24 pt-25"
       />
     </ListPage>

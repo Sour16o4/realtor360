@@ -1,4 +1,4 @@
-import type { FilterGroup } from "./types";
+import type { FilterGroup, RelatedItem } from "./types";
 
 export const contactFilters: FilterGroup[] = [
   { title: "Status", options: ["Active", "In Progress", "Converted", "Cold", "Not Interested"] },
@@ -45,34 +45,36 @@ export const contacts: Contact[] = [
 
 export type ContactDetail = {
   id: string;
-  email: string;
+  /** Only the designed page sets these two; the other contacts show their own list email and phone. */
+  email?: string;
+  phone?: string;
   createdDate: string;
   city: string;
-  phone: string;
   preferredContact: string;
-  /** Items of the "Related List" sidebar; `href` jumps to a section, `count` is the badge. */
-  related: Array<{ label: string; count?: number; href?: string }>;
+  related: RelatedItem[];
   deals: Array<{ name: string; development: string; unitType: string; value: string; status: string; followUp: string }>;
 };
 
-export const contactDetails: Record<string, ContactDetail> = {
-  "john-doe": {
-    id: "john-doe",
-    email: "john.doe@email.com",
-    createdDate: "12/06/2024",
-    city: "Bengaluru",
-    phone: "+91 98765 43210",
-    preferredContact: "Email / Phone",
-    related: [
-      { label: "Notes" },
-      { label: "Deals", count: 3, href: "#deals" },
-      { label: "Activities" },
-      { label: "Attachments" },
-    ],
-    deals: [
-      { name: "Villa Purchase - Sunrise", development: "Sunrise Enclave", unitType: "3 BHK Villa", value: "Rs. 1.95 Cr", status: "In Progress", followUp: "12 July 2025" },
-      { name: "Apartment - Orchid", development: "Orchid Heights", unitType: "2 BHK Flat", value: "Rs. 98 L", status: "Cold", followUp: "15 July 2025" },
-      { name: "Aster Tower Penthouse", development: "Aster Tower", unitType: "4 BHK Duplex", value: "Rs. 2.5 Cr", status: "Not Interested", followUp: "-" },
-    ],
-  },
+/** The designed overview (John Doe); every other contact uses it as a template with their own list values. */
+const designedContactDetail: ContactDetail = {
+  id: "john-doe",
+  email: "john.doe@email.com",
+  phone: "+91 98765 43210",
+  createdDate: "12/06/2024",
+  city: "Bengaluru",
+  preferredContact: "Email / Phone",
+  related: [{ label: "Notes" }, { label: "Deals", count: 3, href: "#deals" }, { label: "Activities" }, { label: "Attachments" }],
+  deals: [
+    { name: "Villa Purchase - Sunrise", development: "Sunrise Enclave", unitType: "3 BHK Villa", value: "Rs. 1.95 Cr", status: "In Progress", followUp: "12 July 2025" },
+    { name: "Apartment - Orchid", development: "Orchid Heights", unitType: "2 BHK Flat", value: "Rs. 98 L", status: "Cold", followUp: "15 July 2025" },
+    { name: "Aster Tower Penthouse", development: "Aster Tower", unitType: "4 BHK Duplex", value: "Rs. 2.5 Cr", status: "Not Interested", followUp: "-" },
+  ],
 };
+
+/** Every contact has a page. */
+export const contactDetails: Record<string, ContactDetail> = Object.fromEntries(
+  contacts.map((c) => [
+    c.id,
+    c.id === designedContactDetail.id ? designedContactDetail : { ...designedContactDetail, id: c.id, email: undefined, phone: undefined },
+  ]),
+);

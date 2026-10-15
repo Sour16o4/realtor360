@@ -1,4 +1,4 @@
-import type { FilterGroup } from "./types";
+import type { FilterGroup, RelatedItem } from "./types";
 
 export const unitFilters: FilterGroup[] = [
   { title: "Development", options: ["Sunrise Enclave", "Green Heights", "Ocean Pearl", "Eden Greens"] },
@@ -87,16 +87,13 @@ export const units: Unit[] = [
 
 export type UnitDetail = {
   id: string;
-  /** Items of the "Related List" sidebar. */
-  related: Array<{ label: string }>;
+  related: RelatedItem[];
+  /** Unit name, type and price are not stored: they come from the unit's list row (see `unitCode`, `unitType`). */
   overview: {
-    unitName: string;
-    type: string;
     area: string;
     floor: string;
     balconies: number;
     bathrooms: number;
-    price: string;
     facing: string;
     furnishing: string;
   };
@@ -106,37 +103,37 @@ export type UnitDetail = {
   addOns: Array<{ name: string; type: string; status: string; purpose: string }>;
 };
 
-export const unitDetails: Record<string, UnitDetail> = {
-  "unit-a-101": {
-    id: "unit-a-101",
-    related: [
-      { label: "Notes" },
-      { label: "Deals Associate" },
-      { label: "Add-On Units Associated" },
-      { label: "Activities" },
-      { label: "Attachments" },
-    ],
-    overview: {
-      unitName: "Unit A-101",
-      type: "3 BHK Flat",
-      area: "1650 sqft",
-      floor: "1st Floor",
-      balconies: 2,
-      bathrooms: 2,
-      price: "₹1.45 Cr",
-      facing: "East",
-      furnishing: "Semi- Furnished",
-    },
-    building: { city: "Bengaluru", floors: 6, status: "Available", website: "www.sunriseenclave.com" },
-    broker: { name: "Jessica Chen", role: "Sales Executive", email: "jessica.chen@urbanrealty.com", phone: "+91 98765 43210" },
-    deals: [
-      { name: "Sunrise Villa Sale", owner: "Jessica Chen", status: "Closed Won", value: "₹1.45 Cr" },
-      { name: "Aster Premium Buyer", owner: "Rahul Yadav", status: "In Progress", value: "₹1.40 Cr" },
-    ],
-    addOns: [
-      { name: "Unit A-101S", type: "Servant Q", status: "Available", purpose: "Attached to Main Unit" },
-      { name: "Parking Slot #12", type: "Parking", status: "Reserved", purpose: "For Unit A-101" },
-      { name: "Store Room #4", type: "Storage", status: "Available", purpose: "Add-on Storage" },
-    ],
-  },
+/** "Unit A- 101 (3 BHK)" -> "Unit A-101" */
+export const unitCode = (unit: Unit) => unit.name.replace(/\s*\(.*\)/, "").replace("- ", "-");
+
+/** "Unit A- 101 (3 BHK)" with type "Flat" -> "3 BHK Flat" */
+export const unitType = (unit: Unit) => `${unit.name.match(/\((.*)\)/)?.[1] ?? ""} ${unit.type}`.trim();
+
+/** The designed overview (Unit A-101); every other unit uses it as a template with its own list values. */
+const designedUnitDetail: UnitDetail = {
+  id: "unit-a-101",
+  related: [
+    { label: "Notes" },
+    { label: "Deals Associate", href: "#deals" },
+    { label: "Add-On Units Associated", href: "#add-on-units" },
+    { label: "Activities" },
+    { label: "Attachments" },
+  ],
+  overview: { area: "1650 sqft", floor: "1st Floor", balconies: 2, bathrooms: 2, facing: "East", furnishing: "Semi- Furnished" },
+  building: { city: "Bengaluru", floors: 6, status: "Available", website: "www.sunriseenclave.com" },
+  broker: { name: "Jessica Chen", role: "Sales Executive", email: "jessica.chen@urbanrealty.com", phone: "+91 98765 43210" },
+  deals: [
+    { name: "Sunrise Villa Sale", owner: "Jessica Chen", status: "Closed Won", value: "₹1.45 Cr" },
+    { name: "Aster Premium Buyer", owner: "Rahul Yadav", status: "In Progress", value: "₹1.40 Cr" },
+  ],
+  addOns: [
+    { name: "Unit A-101S", type: "Servant Q", status: "Available", purpose: "Attached to Main Unit" },
+    { name: "Parking Slot #12", type: "Parking", status: "Reserved", purpose: "For Unit A-101" },
+    { name: "Store Room #4", type: "Storage", status: "Available", purpose: "Add-on Storage" },
+  ],
 };
+
+/** Every unit has a page. */
+export const unitDetails: Record<string, UnitDetail> = Object.fromEntries(
+  units.map((u) => [u.id, { ...designedUnitDetail, id: u.id }]),
+);

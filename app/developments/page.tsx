@@ -43,7 +43,7 @@ export default function DevelopmentsPage() {
         columns={columns}
         rows={developments}
         rowKey={(d) => d.id}
-        rowHref={(d) => (d.id === "sunrise-enclave" ? `/developments/${d.id}` : undefined)}
+        rowHref={(d) => `/developments/${d.id}`}
         rowClassName="-ml-8 h-153 pl-24 pt-25 first:pt-28"
         bodyClassName="mt-3"
       />

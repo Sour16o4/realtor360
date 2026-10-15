@@ -1,4 +1,4 @@
-import type { FilterGroup } from "./types";
+import type { FilterGroup, RelatedItem } from "./types";
 
 export type Building = {
   id: string;
@@ -83,22 +83,22 @@ export const buildings: Building[] = [
 export type BuildingDetail = {
   id: string;
   owner: string;
-  /** The Orchid Heights overview shows "Available", although the list says "Selling Fast". */
-  status: string;
+  /** Only the designed pages set this; the other buildings show their own list status. */
+  status?: string;
   website: string;
-  /** Items of the "Related List" sidebar; `count` is the badge next to the label. */
-  related: Array<{ label: string; count?: number }>;
+  related: RelatedItem[];
   /** The overview repeats some fields in two sections and the design gives them different values. */
-  overview: { floors: number; infoName: string; infoFloors: number };
+  overview: { floors: number; infoName?: string; infoFloors: number };
   units: Array<{ name: string; development: string; building: string; price: string; status: string; created: string }>;
 };
 
+/** The designed overview (Aster Tower). */
 const asterTowerDetail: BuildingDetail = {
   id: "aster-tower",
   owner: "Rohit Mehra",
   status: "Available",
   website: "www.sunriseenclave.com",
-  related: [{ label: "Notes" }, { label: "Units", count: 3 }, { label: "Activities" }, { label: "Attachments" }],
+  related: [{ label: "Notes" }, { label: "Units", count: 3, href: "#units" }, { label: "Activities" }, { label: "Attachments" }],
   overview: { floors: 4, infoName: "Aster Tower", infoFloors: 6 },
   units: [
     { name: "Unit A- 101 (3 BHK)", development: "Sunrise Enclave", building: "Aster Tower", price: "Rs.1.45Cr", status: "Active", created: "12/06/18" },
@@ -108,7 +108,25 @@ const asterTowerDetail: BuildingDetail = {
 };
 
 /** The design's second overview (Orchid Heights) is the same page with another title, so the content is shared. */
-export const buildingDetails: Record<string, BuildingDetail> = {
-  "aster-tower": asterTowerDetail,
-  "orchid-heights": { ...asterTowerDetail, id: "orchid-heights" },
-};
+const orchidHeightsDetail: BuildingDetail = { ...asterTowerDetail, id: "orchid-heights" };
+
+/**
+ * Every building has a page. The two designed ones are used as they are; the others take the designed page as a
+ * template but show their own list values (status, development, name) instead of the designed ones.
+ */
+export const buildingDetails: Record<string, BuildingDetail> = Object.fromEntries(
+  buildings.map((b) => {
+    if (b.id === "aster-tower") return [b.id, asterTowerDetail];
+    if (b.id === "orchid-heights") return [b.id, orchidHeightsDetail];
+    return [
+      b.id,
+      {
+        ...asterTowerDetail,
+        id: b.id,
+        status: undefined,
+        overview: { ...asterTowerDetail.overview, infoName: undefined },
+        units: asterTowerDetail.units.map((u) => ({ ...u, building: b.name, development: b.development })),
+      },
+    ];
+  }),
+);

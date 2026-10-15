@@ -2,7 +2,7 @@ import Image from "next/image";
 import ListPage from "@/components/list/ListPage";
 import ListTable from "@/components/list/ListTable";
 import StatusBadge from "@/components/ui/StatusBadge";
-import { unitDetails, unitFilters, units, type Unit } from "@/data/units";
+import { unitFilters, units, type Unit } from "@/data/units";
 import type { Column } from "@/data/types";
 
 const columns: Column<Unit>[] = [
@@ -30,7 +30,7 @@ export default function UnitsPage() {
         columns={columns}
         rows={units}
         rowKey={(u) => u.id}
-        rowHref={(u) => (u.id in unitDetails ? `/units/${u.id}` : undefined)}
+        rowHref={(u) => `/units/${u.id}`}
         rowClassName="h-122 pl-17 pr-8 -mr-8 pt-20"
         bodyClassName="mt-5"
       />

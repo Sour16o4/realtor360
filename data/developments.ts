@@ -1,4 +1,4 @@
-import type { FilterGroup } from "./types";
+import type { FilterGroup, RelatedItem } from "./types";
 
 export const developmentFilters: FilterGroup[] = [
   { title: "City", options: ["Bengaluru", "Mumbai", "Delhi", "Pune", "Hyderabad", "Chennai"] },
@@ -48,42 +48,45 @@ export type DevelopmentDetail = {
   owner: string;
   phone: string;
   /** Items of the "Related List" sidebar; `count` is the badge next to the label. */
-  related: Array<{ label: string; count?: number }>;
+  related: RelatedItem[];
   address: { street: string; state: string; country: string; city: string; zipCode: string };
   attorney: { firm: string; fee: string; name: string };
   buildings: Array<{ name: string; floors: number; status: string; createdDate: string; createdTime: string }>;
 };
 
-export const developmentDetails: Record<string, DevelopmentDetail> = {
-  "sunrise-enclave": {
-    id: "sunrise-enclave",
-    status: "Active",
-    owner: "Rohit Mehra",
-    phone: "+91-9854155264",
-    related: [
-      { label: "Notes" },
-      { label: "Buildings", count: 6 },
-      { label: "Units", count: 8 },
-      { label: "Deals" },
-      { label: "Activities" },
-      { label: "Attachments" },
-    ],
-    address: {
-      street: "102 Sunrise Avenue, Sarjapur Road",
-      state: "Karnataka",
-      // The design shows a price here; copied as is.
-      country: "Rs.1.25 Cr",
-      city: "Bengaluru",
-      zipCode: "560035",
-    },
-    attorney: { firm: "NNC Law Firm", fee: "Rs.10,000.00", name: "Neha Sinha" },
-    buildings: [
-      { name: "Sunrise Enclave- Building 1", floors: 4, status: "Active", createdDate: "12/06/18", createdTime: "10:50AM" },
-      { name: "Sunrise Enclave- Building 2", floors: 4, status: "Active", createdDate: "07/06/18", createdTime: "07:30PM" },
-      { name: "Sunrise Enclave- Building 3", floors: 3, status: "Active", createdDate: "07/06/18", createdTime: "07:30PM" },
-      { name: "Sunrise Enclave- Building 4", floors: 6, status: "Active", createdDate: "04/06/18", createdTime: "10:50AM" },
-      { name: "Sunrise Enclave- Building 5", floors: 5, status: "Active", createdDate: "03/06/18", createdTime: "10:50AM" },
-      { name: "Sunrise Enclave- Building 6", floors: 6, status: "Active", createdDate: "01/06/18", createdTime: "10:50AM" },
-    ],
+const designedDevelopmentDetail: DevelopmentDetail = {
+  id: "sunrise-enclave",
+  status: "Active",
+  owner: "Rohit Mehra",
+  phone: "+91-9854155264",
+  related: [
+    { label: "Notes" },
+    { label: "Buildings", count: 6, href: "#buildings" },
+    { label: "Units", count: 8 },
+    { label: "Deals" },
+    { label: "Activities" },
+    { label: "Attachments" },
+  ],
+  address: {
+    street: "102 Sunrise Avenue, Sarjapur Road",
+    state: "Karnataka",
+    // The design shows a price here; copied as is.
+    country: "Rs.1.25 Cr",
+    city: "Bengaluru",
+    zipCode: "560035",
   },
+  attorney: { firm: "NNC Law Firm", fee: "Rs.10,000.00", name: "Neha Sinha" },
+  buildings: [
+    { name: "Sunrise Enclave- Building 1", floors: 4, status: "Active", createdDate: "12/06/18", createdTime: "10:50AM" },
+    { name: "Sunrise Enclave- Building 2", floors: 4, status: "Active", createdDate: "07/06/18", createdTime: "07:30PM" },
+    { name: "Sunrise Enclave- Building 3", floors: 3, status: "Active", createdDate: "07/06/18", createdTime: "07:30PM" },
+    { name: "Sunrise Enclave- Building 4", floors: 6, status: "Active", createdDate: "04/06/18", createdTime: "10:50AM" },
+    { name: "Sunrise Enclave- Building 5", floors: 5, status: "Active", createdDate: "03/06/18", createdTime: "10:50AM" },
+    { name: "Sunrise Enclave- Building 6", floors: 6, status: "Active", createdDate: "01/06/18", createdTime: "10:50AM" },
+  ],
 };
+
+/** Every row of the list has a page; the other four rows reuse the designed page as a template. */
+export const developmentDetails: Record<string, DevelopmentDetail> = Object.fromEntries(
+  developments.map((d) => [d.id, { ...designedDevelopmentDetail, id: d.id }]),
+);

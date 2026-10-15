@@ -7,7 +7,7 @@ import { EmptyTab, NotesTab } from "@/components/detail/NotesTab";
 import RecordHeader, { HeaderButton, HeaderText } from "@/components/detail/RecordHeader";
 import Tabs, { parseTab } from "@/components/detail/Tabs";
 import StatusBadge from "@/components/ui/StatusBadge";
-import { unitDetails, units } from "@/data/units";
+import { unitCode, unitDetails, unitType, units } from "@/data/units";
 
 export function generateStaticParams() {
   return Object.keys(unitDetails).map((id) => ({ id }));
@@ -73,14 +73,14 @@ export default async function UnitDetailPage({ params, searchParams }: PageProps
               offset={163}
               columns={[
                 [
-                  ["Unit Name", overview.unitName],
-                  ["Type", overview.type],
+                  ["Unit Name", unitCode(unit)],
+                  ["Type", unitType(unit)],
                   ["Area", overview.area],
                   ["Floor", overview.floor],
                   ["Balconies", overview.balconies],
                   ["Bathrooms", overview.bathrooms],
                   ["Status", <StatusBadge key="status" status={unit.status} />],
-                  ["Price", overview.price],
+                  ["Price", unit.price],
                   ["Facing", overview.facing],
                   ["Furnishing", overview.furnishing],
                 ],
@@ -137,6 +137,7 @@ export default async function UnitDetailPage({ params, searchParams }: PageProps
           </DetailSection>
 
           <DetailSection
+            id="deals"
             title="Deals Associated"
             subtitle="Direct and indirect communication information."
             paddingTop={22}
@@ -158,6 +159,7 @@ export default async function UnitDetailPage({ params, searchParams }: PageProps
           </DetailSection>
 
           <DetailSection
+            id="add-on-units"
             title="Add-on Units Associated"
             subtitle="Direct and indirect communication information."
             paddingTop={21}
