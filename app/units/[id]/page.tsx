@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import DetailPage from "@/components/detail/DetailPage";
 import DetailSection from "@/components/detail/DetailSection";
+import DetailTable from "@/components/detail/DetailTable";
 import FieldList from "@/components/detail/FieldList";
 import { EmptyTab, NotesTab } from "@/components/detail/NotesTab";
 import RecordHeader, { HeaderButton, HeaderText } from "@/components/detail/RecordHeader";
@@ -16,33 +17,6 @@ type PageProps = {
   params: Promise<{ id: string }>;
   searchParams: Promise<{ tab?: string }>;
 };
-
-type TableProps = {
-  /** CSS grid columns; the first one starts at the first label's x position. */
-  columns: string;
-  headings: string[];
-  rows: React.ReactNode[][];
-};
-
-/** Plain table of an overview section: grey headings, black values. */
-function Table({ columns, headings, rows }: TableProps) {
-  return (
-    <div className="grid gap-y-20 text-18 leading-22" style={{ gridTemplateColumns: columns }}>
-      {headings.map((heading) => (
-        <span key={heading} className="font-semibold text-subtle">
-          {heading}
-        </span>
-      ))}
-      {rows.map((row, index) => (
-        <div key={index} className="contents">
-          {row.map((cell, cellIndex) => (
-            <span key={cellIndex}>{cell}</span>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-}
 
 export default async function UnitDetailPage({ params, searchParams }: PageProps) {
   const { id } = await params;
@@ -170,7 +144,7 @@ export default async function UnitDetailPage({ params, searchParams }: PageProps
             titleShift={{ x: -1, y: 10 }}
           >
             <div className="ml-164">
-              <Table
+              <DetailTable
                 columns="173px 164px 163px 1fr"
                 headings={["Deal Name", "Deal Owner", "Status", "Value"]}
                 rows={detail.deals.map((deal) => [
@@ -191,7 +165,7 @@ export default async function UnitDetailPage({ params, searchParams }: PageProps
             titleShift={{ x: 1, y: 12 }}
           >
             <div className="ml-167">
-              <Table
+              <DetailTable
                 columns="168px 116px 112px 1fr"
                 headings={["Unit Name", "Type", "Status", "Purpose"]}
                 rows={detail.addOns.map((addOn) => [addOn.name, addOn.type, addOn.status, addOn.purpose])}

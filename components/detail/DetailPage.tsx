@@ -1,6 +1,7 @@
 import { cn } from "@/lib/cn";
 
-type RelatedItem = { label: string; count?: number };
+/** `href` makes the item a link, e.g. "#deals" to jump to a section of the page. */
+type RelatedItem = { label: string; count?: number; href?: string };
 
 type DetailPageProps = {
   related: RelatedItem[];
@@ -18,9 +19,9 @@ export default function DetailPage({ related, compact = false, addRelatedGap = c
       <aside className="shrink-0 bg-white pt-22 pb-40 pl-80 lg:w-296">
         <h2 className="w-137 text-center text-24 font-semibold">Related List</h2>
         <ul className={cn("flex flex-col", compact ? "mt-47 w-146 gap-37 pl-6" : "mt-39 gap-39")}>
-          {related.map(({ label, count }) => (
+          {related.map(({ label, count, href }) => (
             <li key={label} className="flex items-center gap-9 text-18 leading-22 font-medium">
-              {label}
+              {href ? <a href={href}>{label}</a> : label}
               {count !== undefined && (
                 <span className="flex size-19 items-center justify-center rounded-5 bg-[#f3e3af] text-14 font-normal">
                   {count}

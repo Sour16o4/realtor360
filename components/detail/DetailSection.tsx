@@ -1,4 +1,6 @@
 type DetailSectionProps = {
+  /** Anchor id, so a link in the sidebar can jump to this section. */
+  id?: string;
   title: string;
   subtitle: string;
   /** Moves the title block (px); the design does not place it exactly centered in every section. */
@@ -14,6 +16,7 @@ type DetailSectionProps = {
 
 /** One block of an overview: centered title and subtitle on the left, content on the right, divider below. */
 export default function DetailSection({
+  id,
   title,
   subtitle,
   titleShift = {},
@@ -23,7 +26,7 @@ export default function DetailSection({
   children,
 }: DetailSectionProps) {
   return (
-    <section className="mr-26 ml-37 flex items-center border-b border-subtle/30" style={{ paddingTop, paddingBottom }}>
+    <section id={id} className="mr-26 ml-37 flex items-center border-b border-subtle/30" style={{ paddingTop, paddingBottom }}>
       <div className="w-308 shrink-0">
         <div className="mx-auto text-center" style={{ maxWidth: titleWidth, transform: `translate(${titleShift.x ?? 0}px, ${titleShift.y ?? 0}px)` }}>
           <h2 className="text-20 font-semibold">{title}</h2>
