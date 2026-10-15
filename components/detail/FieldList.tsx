@@ -14,12 +14,14 @@ type FieldListProps = {
   columnGap?: number;
   /** Fixed width (px) per column, as in the design, so the next column starts at the same x whatever the values are; longer values wrap. */
   widths?: number[];
+  /** Classes of the labels; the default is 18/600 grey, some sections use bigger black labels. */
+  labelClassName?: string;
   /** Vertical space between rows (px). */
   rowGap?: number;
 };
 
 /** Right-aligned labels (18/600 grey) with their values (18/400 black) next to them. */
-export default function FieldList({ columns, gap = 35, offset = 0, columnGap = 0, widths, rowGap = 27 }: FieldListProps) {
+export default function FieldList({ columns, gap = 35, offset = 0, columnGap = 0, widths, labelClassName = "font-semibold text-subtle", rowGap = 27 }: FieldListProps) {
   return (
     <div className="flex items-start" style={{ marginLeft: offset }}>
       {columns.map((fields, index) => (
@@ -32,7 +34,7 @@ export default function FieldList({ columns, gap = 35, offset = 0, columnGap = 0
             const style = gapBefore === undefined ? undefined : { marginTop: gapBefore - rowGap };
             return (
               <Fragment key={label}>
-                <dt className="text-right font-semibold text-subtle" style={style}>
+                <dt className={`text-right ${labelClassName}`} style={style}>
                   {label}
                 </dt>
                 <dd style={style}>{value}</dd>
