@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn";
 
 const PAGES = [1, 2, 3];
 
-const Divider = () => <span className="text-subtle">|</span>;
+const Divider = () => <span className="w-7 text-subtle">|</span>;
 
 export default function Pagination({ className }: { className?: string }) {
   const [page, setPage] = useState(1);
@@ -16,7 +16,7 @@ export default function Pagination({ className }: { className?: string }) {
       <button
         type="button"
         onClick={() => setPage((value) => Math.max(1, value - 1))}
-        className="flex items-center text-subtle"
+        className="flex w-57 items-center text-subtle"
       >
         <Image src="/icons/page-prev.svg" alt="" width={18} height={18} />
         Prev
@@ -28,7 +28,7 @@ export default function Pagination({ className }: { className?: string }) {
             type="button"
             onClick={() => setPage(number)}
             aria-current={page === number ? "page" : undefined}
-            className={cn("flex h-27 items-center justify-center", page === number && "w-27 rounded-full bg-[#f3e3af]")}
+            className={cn("flex h-27 min-w-12 items-center justify-center text-black", page === number && "w-27 rounded-full bg-[#f3e3af]")}
           >
             {number}
           </button>
@@ -38,7 +38,7 @@ export default function Pagination({ className }: { className?: string }) {
       <button
         type="button"
         onClick={() => setPage((value) => Math.min(PAGES.length, value + 1))}
-        className="flex items-center"
+        className="flex w-59 items-center"
       >
         Next
         <Image src="/icons/page-next.svg" alt="" width={18} height={18} />

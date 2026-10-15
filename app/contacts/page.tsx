@@ -31,6 +31,7 @@ export default function ContactsPage() {
       filterSearch="Search by Contact Name"
       search="Search Contact"
       compactHeader
+      actionsGap={20}
     >
       <ListTable
         columns={columns}

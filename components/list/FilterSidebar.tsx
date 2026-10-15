@@ -9,13 +9,15 @@ type FilterSidebarProps = {
   children?: React.ReactNode;
   /** Tighter group spacing (the units design). */
   tight?: boolean;
+  /** Space (px) above the Apply / Reset buttons; the design places them differently on some pages. */
+  actionsGap?: number;
 };
 
 /**
  * Left "Filters" panel shared by every list page.
  * It is a plain form: the browser's native reset clears the checkboxes, so no client state is needed.
  */
-export default function FilterSidebar({ groups, searchPlaceholder, children, tight = false }: FilterSidebarProps) {
+export default function FilterSidebar({ groups, searchPlaceholder, children, tight = false, actionsGap = 30 }: FilterSidebarProps) {
   return (
     <aside className="shrink-0 bg-white pt-22 pr-13 pb-40 pl-26 lg:w-296">
       <h2 className="-mr-13 -ml-26 text-center text-24 font-semibold">Filters</h2>
@@ -53,7 +55,7 @@ export default function FilterSidebar({ groups, searchPlaceholder, children, tig
 
         {children}
 
-        <div className="mt-30 -ml-4 flex w-252 max-w-full flex-col gap-15">
+        <div className="-ml-4 flex w-252 max-w-full flex-col gap-15" style={{ marginTop: actionsGap }}>
           <button type="button" className="h-30 rounded-10 bg-gold text-14 font-medium text-white">
             Apply Filters
           </button>

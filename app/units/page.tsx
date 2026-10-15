@@ -20,12 +20,12 @@ const columns: Column<Unit>[] = [
   { header: "Development", width: 198, render: (u) => u.development },
   { header: "Type", width: 121, render: (u) => u.type },
   { header: "Status", width: 160, render: (u) => <StatusBadge status={u.status} /> },
-  { header: "Price", width: 116, render: (u) => <span className="text-12">{u.price}</span> },
+  { header: "Price", width: 116, render: (u) => <span className="-mt-3 block text-12">{u.price}</span> },
 ];
 
 export default function UnitsPage() {
   return (
-    <ListPage title="All Units" createLabel="Create Units" filters={unitFilters} search="Search Unit" tightFilters>
+    <ListPage title="All Units" createLabel="Create Units" filters={unitFilters} search="Search Unit" tightFilters actionsGap={20}>
       <ListTable
         columns={columns}
         rows={units}

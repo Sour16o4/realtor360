@@ -36,7 +36,7 @@ export default function RecordName({
         <p className="text-16 font-semibold text-black">{name}</p>
         {details.map(([label, value]) => (
           <p key={label} className="mt-5 text-14 text-subtle">
-            <span className="font-semibold">{label}:</span> {value}
+            <span className="font-medium">{label}:</span> {value}
           </p>
         ))}
       </div>

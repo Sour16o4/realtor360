@@ -20,6 +20,7 @@ export default function AttorneyFirmsPage() {
       filters={attorneyFirmFilters}
       search="Search Attorney Firm"
       tightFilters
+      actionsGap={20}
     >
       <ListTable
         columns={columns}

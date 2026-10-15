@@ -14,9 +14,11 @@ const columns: Column<Development>[] = [
         <div>
           <p className="text-16 font-semibold text-black">{d.name}</p>
           <div className="mt-20 opacity-60">
-            <p className="text-14 text-subtle">Email: {d.email}</p>
+            <p className="text-14 text-subtle">
+              <span className="font-medium">Email:</span> {d.email}
+            </p>
             <p className="mt-8 text-14 text-subtle">
-              Website: <span className="text-gold underline">{d.website}</span>
+              <span className="font-medium">Website:</span> <span className="text-gold underline">{d.website}</span>
             </p>
           </div>
         </div>
@@ -38,6 +40,7 @@ export default function DevelopmentsPage() {
       filters={developmentFilters}
       filterSearch="Search by Development Name"
       compactHeader
+      actionsGap={21}
     >
       <ListTable
         columns={columns}

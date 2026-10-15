@@ -31,6 +31,7 @@ export default function CompaniesPage() {
       filters={companyFilters}
       search="Search Company"
       tightFilters
+      actionsGap={20}
     >
       <ListTable
         columns={columns}
