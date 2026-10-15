@@ -1,6 +1,8 @@
 import Image from "next/image";
 import type { FilterGroup } from "@/data/types";
 import { cn } from "@/lib/cn";
+import FilterForm from "./FilterForm";
+import SearchInput from "./SearchInput";
 
 type FilterSidebarProps = {
   groups: FilterGroup[];
@@ -15,18 +17,17 @@ type FilterSidebarProps = {
 
 /**
  * Left "Filters" panel shared by every list page.
- * It is a plain form: the browser's native reset clears the checkboxes, so no client state is needed.
+ * The browser's native reset clears the checkboxes; FilterForm also clears the search text.
  */
 export default function FilterSidebar({ groups, searchPlaceholder, children, tight = false, actionsGap = 30 }: FilterSidebarProps) {
   return (
     <aside className="shrink-0 bg-white pt-22 pr-13 pb-40 pl-26 lg:w-296">
       <h2 className="-mr-13 -ml-26 text-center text-24 font-semibold">Filters</h2>
 
-      <form>
+      <FilterForm>
         {searchPlaceholder && (
           <label className="mt-12 flex h-32 items-center justify-between rounded-10 bg-page px-10">
-            <input
-              type="search"
+            <SearchInput
               placeholder={searchPlaceholder}
               className="w-full bg-transparent font-nav text-12 font-medium outline-none placeholder:text-subtle"
             />
@@ -63,7 +64,7 @@ export default function FilterSidebar({ groups, searchPlaceholder, children, tig
             Reset Filters
           </button>
         </div>
-      </form>
+      </FilterForm>
     </aside>
   );
 }

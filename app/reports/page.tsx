@@ -3,6 +3,7 @@ import ListTable from "@/components/list/ListTable";
 import StarToggle from "@/components/list/StarToggle";
 import { reportFilters, reports, type Report } from "@/data/reports";
 import type { Column } from "@/data/types";
+import { pageCount, searchRows } from "@/lib/search";
 
 const columns: Column<Report>[] = [
   {
@@ -20,9 +21,11 @@ const columns: Column<Report>[] = [
   { header: "Last Run Date", width: 124, render: (r) => r.lastRun },
 ];
 
-export default function ReportsPage() {
+export default async function ReportsPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
+  const { q } = await searchParams;
+  const rows = searchRows(reports, q, (row) => row.name);
   return (
-    <ListPage
+    <ListPage pages={pageCount(rows.length, !!q)}
       title="All Reports"
       createLabel="Create Reports"
       filters={reportFilters}
@@ -31,7 +34,7 @@ export default function ReportsPage() {
     >
       <ListTable
         columns={columns}
-        rows={reports}
+        rows={rows}
         rowKey={(r) => r.id}
         rowClassName="h-66 pl-17 pt-24"
         bodyClassName="mt-3"

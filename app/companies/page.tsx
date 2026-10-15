@@ -4,6 +4,7 @@ import ListTable from "@/components/list/ListTable";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { companies, companyFilters, type Company } from "@/data/companies";
 import type { Column } from "@/data/types";
+import { pageCount, searchRows } from "@/lib/search";
 
 const columns: Column<Company>[] = [
   {
@@ -23,9 +24,11 @@ const columns: Column<Company>[] = [
   { header: "Owner Name", width: 143, render: (c) => c.owner },
 ];
 
-export default function CompaniesPage() {
+export default async function CompaniesPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
+  const { q } = await searchParams;
+  const rows = searchRows(companies, q, (row) => row.name);
   return (
-    <ListPage
+    <ListPage pages={pageCount(rows.length, !!q)}
       title="All Companies"
       createLabel="Create Company"
       filters={companyFilters}
@@ -35,7 +38,7 @@ export default function CompaniesPage() {
     >
       <ListTable
         columns={columns}
-        rows={companies}
+        rows={rows}
         rowKey={(c) => c.id}
         rowHref={(c) => `/companies/${c.id}`}
         rowClassName="h-89 pl-17 pt-22"

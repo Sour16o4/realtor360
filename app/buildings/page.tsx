@@ -3,6 +3,7 @@ import ListTable from "@/components/list/ListTable";
 import RecordName from "@/components/list/RecordName";
 import { buildingFilters, buildings, type Building } from "@/data/buildings";
 import type { Column } from "@/data/types";
+import { pageCount, searchRows } from "@/lib/search";
 
 const columns: Column<Building>[] = [
   {
@@ -17,9 +18,11 @@ const columns: Column<Building>[] = [
   { header: "Sold", width: 78, render: (b) => b.sold },
 ];
 
-export default function BuildingsPage() {
+export default async function BuildingsPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
+  const { q } = await searchParams;
+  const rows = searchRows(buildings, q, (row) => row.name);
   return (
-    <ListPage
+    <ListPage pages={pageCount(rows.length, !!q)}
       title="Buildings"
       createLabel="Create Buildings"
       filters={buildingFilters}
@@ -28,7 +31,7 @@ export default function BuildingsPage() {
     >
       <ListTable
         columns={columns}
-        rows={buildings}
+        rows={rows}
         rowKey={(b) => b.id}
         rowHref={(b) => `/buildings/${b.id}`}
         rowClassName="-ml-8 h-150 pl-24 pt-25"

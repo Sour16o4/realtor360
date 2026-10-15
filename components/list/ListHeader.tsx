@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/cn";
+import SearchInput from "./SearchInput";
 
 type ListHeaderProps = {
   title: string;
@@ -33,8 +34,7 @@ export default function ListHeader({ title, createLabel, searchPlaceholder, clas
         <div className="flex items-center gap-10">
           {searchPlaceholder && (
             <label className="flex h-31 w-267 items-center justify-between rounded-5 bg-[#ededed] px-10">
-              <input
-                type="search"
+              <SearchInput
                 placeholder={searchPlaceholder}
                 className="w-full bg-transparent font-nav text-12 font-medium outline-none placeholder:text-subtle"
               />

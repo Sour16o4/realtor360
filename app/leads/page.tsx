@@ -2,16 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import ListPage from "@/components/list/ListPage";
 import { leadFilters, leads } from "@/data/leads";
+import { pageCount, searchRows } from "@/lib/search";
 
 /** Width (px) of each "Label: value" group in a row's meta line, so the columns line up like in the design whatever the text. */
 const DETAIL_WIDTHS = [140, 104, 123];
 
-export default function LeadsPage() {
+export default async function LeadsPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
+  const { q } = await searchParams;
+  const rows = searchRows(leads, q, (row) => row.name);
   return (
-    <ListPage title="Leads" createLabel="Create Lead" filters={leadFilters} filterSearch="Search by Lead Name" search="Search Lead" tightFilters actionsGap={20}>
+    <ListPage pages={pageCount(rows.length, !!q)} title="Leads" createLabel="Create Lead" filters={leadFilters} filterSearch="Search by Lead Name" search="Search Lead" tightFilters actionsGap={20}>
       {/* The lead rows span the whole main area, so cancel the page's content padding. */}
       <div className="-mx-16 -mt-20 lg:-mr-25 lg:-ml-38">
-        {leads.map((lead) => (
+        {rows.map((lead) => (
           <div key={lead.id} className="relative h-136 border-b border-black/12 pt-21 pl-16 hover:bg-white/60 lg:pl-38">
             <div className="flex gap-24">
               <Image src={lead.photo} alt="" width={82} height={82} className="shrink-0 rounded-full object-cover" style={{ width: 82, height: 82 }} />

@@ -3,6 +3,7 @@ import ListTable from "@/components/list/ListTable";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { attorneyFirmFilters, attorneyFirms, type AttorneyFirm } from "@/data/attorneyFirms";
 import type { Column } from "@/data/types";
+import { pageCount, searchRows } from "@/lib/search";
 
 const columns: Column<AttorneyFirm>[] = [
   { header: "Firm Name", width: 342, render: (f) => <p className="text-16 font-semibold">{f.name}</p> },
@@ -12,9 +13,11 @@ const columns: Column<AttorneyFirm>[] = [
   { header: "Status", width: 152, render: (f) => <StatusBadge status={f.status} /> },
 ];
 
-export default function AttorneyFirmsPage() {
+export default async function AttorneyFirmsPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
+  const { q } = await searchParams;
+  const rows = searchRows(attorneyFirms, q, (row) => row.name);
   return (
-    <ListPage
+    <ListPage pages={pageCount(rows.length, !!q)}
       title="Attorney Firm"
       createLabel="Create Attorney Firm"
       filters={attorneyFirmFilters}
@@ -24,7 +27,7 @@ export default function AttorneyFirmsPage() {
     >
       <ListTable
         columns={columns}
-        rows={attorneyFirms}
+        rows={rows}
         rowKey={(f) => f.id}
         rowHref={(f) => `/attorney-firms/${f.id}`}
         rowClassName="h-74 pl-17 pt-22"

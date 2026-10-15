@@ -16,6 +16,8 @@ type ListPageProps = {
   /** Units page: filter groups sit closer together. */
   tightFilters?: boolean;
   actionsGap?: number;
+  /** Number of pages in the pagination (see lib/search.ts). */
+  pages?: number;
   children: React.ReactNode;
 };
 
@@ -30,6 +32,7 @@ export default function ListPage({
   compactHeader = false,
   tightFilters = false,
   actionsGap,
+  pages,
   children,
 }: ListPageProps) {
   return (
@@ -42,7 +45,7 @@ export default function ListPage({
         <ListHeader title={title} createLabel={createLabel} searchPlaceholder={search} className="px-16 lg:pr-25 lg:pl-38" />
         <hr className={cn("border-black/12", compactHeader ? "mt-14" : "mt-22")} />
         <div className="px-16 pt-20 lg:pr-25 lg:pl-38">{children}</div>
-        <Pagination className="mt-auto self-center pt-26 lg:pr-150" />
+        <Pagination pages={pages} className="mt-auto self-center pt-26 lg:pr-150" />
       </main>
     </div>
   );
