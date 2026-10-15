@@ -29,7 +29,7 @@ function donutBackground() {
 }
 
 /** A callout placed in px (no scaling): label's top-left, and the arrow's left, top, width, height, from the donut's top-left. */
-export type CalloutPlacement = { label: [number, number]; arrow: [number, number, number, number] };
+export type CalloutPlacement = { label: [number, number]; arrow?: [number, number, number, number] };
 
 type LeadSourceChartProps = {
   size?: number;
@@ -38,15 +38,17 @@ type LeadSourceChartProps = {
   /** Exact callout positions from the design, for sizes where scaling Home's positions is not close enough. */
   callouts?: Record<string, CalloutPlacement>;
   menu?: boolean;
+  /** Just the donut with 14px callouts, as in the Create Chart preview (no card or title). */
+  plain?: boolean;
   className?: string;
 };
 
-export default function LeadSourceChart({ size = BASE_SIZE, left, callouts, menu, className }: LeadSourceChartProps) {
+export default function LeadSourceChart({ size = BASE_SIZE, left, callouts, menu, plain, className }: LeadSourceChartProps) {
   const scale = size / BASE_SIZE;
   const hole = (size * INNER_RATIO) / 2;
 
   return (
-    <Card title="Deals by Lead Source" menu={menu} className={cn("relative px-22 pt-13", className)}>
+    <Card title="Deals by Lead Source" menu={menu} plain={plain} className={cn("relative px-22 pt-13", className)}>
       <div className={cn("relative mt-32", left === undefined && "mx-auto")} style={{ width: size, height: size, marginLeft: left }}>
         <div
           className="size-full rounded-full"
@@ -74,7 +76,7 @@ export default function LeadSourceChart({ size = BASE_SIZE, left, callouts, menu
                 style={{ left: arrowLeft, top, width, height }}
               />
               <p
-                className="absolute text-center text-10 whitespace-nowrap text-muted"
+                className={cn("absolute text-center whitespace-nowrap text-muted", plain ? "text-14" : "text-10")}
                 style={{ left: labelAt[0], top: labelAt[1] }}
               >
                 {label}

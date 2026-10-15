@@ -23,7 +23,9 @@ const HOME_LAYOUT = {
   titleLeft: 50,
   titleShift: 0,
   labelAngle: 45,
+  labelSize: 10,
   labelShift: 0,
+  labelDrop: 0,
   stageGap: 68,
   stageShift: 0,
 };
@@ -33,13 +35,18 @@ type DealStagesChartProps = {
   plotHeight?: number;
   layout?: Partial<typeof HOME_LAYOUT>;
   menu?: boolean;
+  /** Just the plot, as in the Create Chart preview: no card or title, one series, no legend. */
+  plain?: boolean;
+  /** Per-label horizontal offsets (px) that replace `layout.labelShift`, for frames whose labels are not evenly spaced. */
+  labelShifts?: number[];
   className?: string;
 };
 
-export default function DealStagesChart({ plotWidth = 392, plotHeight = 148, layout, menu, className }: DealStagesChartProps) {
+export default function DealStagesChart({ plotWidth = 392, plotHeight = 148, layout, menu, plain, labelShifts, className }: DealStagesChartProps) {
   const l = { ...HOME_LAYOUT, ...layout };
+  const series = plain ? SERIES.filter(({ key }) => key === "none") : SERIES;
   return (
-    <Card title="Deals by Stages by Development" menu={menu} className={cn("overflow-x-auto px-20 pt-13", className)}>
+    <Card title="Deals by Stages by Development" menu={menu} plain={plain} className={cn("overflow-x-auto px-20 pt-13", className)}>
       <div className="relative shrink-0" style={{ width: plotWidth, height: plotHeight, marginTop: l.top, marginLeft: l.left }}>
         <AxisTitle vertical className="absolute -translate-y-1/2" style={{ left: -l.titleLeft, top: `calc(50% + ${l.titleShift}px)` }}>
           Record Count
@@ -58,18 +65,18 @@ export default function DealStagesChart({ plotWidth = 392, plotHeight = 148, lay
         ))}
 
         <ul className="absolute flex h-full items-end gap-30" style={{ left: l.barsLeft, bottom: -l.barsDrop }}>
-          {dealsByStage.map((row) => (
+          {dealsByStage.map((row, index) => (
             <li key={row.stage} className="relative h-full w-32">
-              {SERIES.map((series) => (
+              {series.map((item) => (
                 <span
-                  key={series.key}
+                  key={item.key}
                   className="absolute inset-x-0 bottom-0 rounded-t-6"
-                  style={{ height: `${(row[series.key] / MAX) * 100}%`, background: series.color }}
+                  style={{ height: `${(row[item.key] / MAX) * 100}%`, background: item.color }}
                 />
               ))}
               <span
-                className="absolute top-full right-1/2 origin-top-right text-10 whitespace-nowrap text-muted"
-                style={{ transform: `translateX(${l.labelShift}px) rotate(-${l.labelAngle}deg)` }}
+                className="absolute top-full right-1/2 origin-top-right whitespace-nowrap text-muted"
+                style={{ fontSize: l.labelSize, transform: `translate(${labelShifts?.[index] ?? l.labelShift}px, ${l.labelDrop}px) rotate(-${l.labelAngle}deg)` }}
               >
                 {row.stage}
               </span>
@@ -81,7 +88,7 @@ export default function DealStagesChart({ plotWidth = 392, plotHeight = 148, lay
       <div className="text-center" style={{ width: plotWidth, marginTop: l.stageGap, marginLeft: l.left, transform: `translateX(${l.stageShift}px)` }}>
         <AxisTitle>Stage</AxisTitle>
       </div>
-      <ChartLegend className="mt-13" />
+      {!plain && <ChartLegend className="mt-13" />}
     </Card>
   );
 }
