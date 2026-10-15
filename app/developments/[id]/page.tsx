@@ -36,7 +36,7 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
           <>
             <HeaderButton variant="gold">Send Email</HeaderButton>
             <HeaderButton>Edit</HeaderButton>
-            <HeaderButton dropdown>Stacking Plan</HeaderButton>
+            <HeaderButton dropdown href="/reports/stacking-plan">Stacking Plan</HeaderButton>
           </>
         }
       >
