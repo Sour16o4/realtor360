@@ -79,4 +79,16 @@
     background-color: var(--color-page);
     color: var(--color-ink);
   }
+
+  /* No outline after a mouse click; keyboard focus gets a subtle one. */
+  a:focus,
+  button:focus {
+    outline: none;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 1px solid color-mix(in srgb, var(--color-ink) 35%, transparent);
+    outline-offset: 2px;
+  }
 }
