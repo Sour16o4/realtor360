@@ -16,6 +16,7 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export function isActive(pathname: string, href: string) {
-  if (href === "/") return pathname === "/";
+  // The Dashboards frame draws the Home pill as the active one (and not the "···" item).
+  if (href === "/") return pathname === "/" || pathname === "/dashboards";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
