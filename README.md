@@ -45,3 +45,9 @@ These are reproduced as they appear in Figma:
 - The Home schedule shows "Submit Internal Review – Apartment PricingFinal Offer – Villa Deal" (two titles merged).
 - Developments overview lists the Country as "Rs.1.25 Cr".
 - Report Category filters include "Hyderabad", and the Contacts city filter has "Hyderbad".
+- Deals list: the Unit text of rows 8 and 9 sits about 9px higher in the frame than in the other rows.
+- Some list fields have no place on the detail design, so they are not shown there: the building Sold count, the Orchid Heights status and units, the lead category, and the contact company and stage.
+- The deal value is "₹1.45Cr" in the list and "₹1.45 Cr" on the detail page.
+- The attorney firm of the development list ("Lex & Co. Legal Partners") differs from the one on the development detail page ("NNC Law Firm").
+- Emails wrap in the middle of a word in the narrow (172px) boxes of the company contacts table.
+- The lead's preferred location is spelled "Begaluru".
