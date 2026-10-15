@@ -36,6 +36,7 @@ export default function CompaniesPage() {
         columns={columns}
         rows={companies}
         rowKey={(c) => c.id}
+        rowHref={(c) => `/companies/${c.id}`}
         rowClassName="h-89 pl-17 pt-22"
         bodyClassName="mt-3"
       />

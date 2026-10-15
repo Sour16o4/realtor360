@@ -1,4 +1,4 @@
-import type { FilterGroup } from "./types";
+import type { FilterGroup, RelatedItem } from "./types";
 
 export const companyFilters: FilterGroup[] = [
   {
@@ -51,3 +51,59 @@ export const companies: Company[] = [
   row("skyhigh-realtors-2", "SkyHigh Realtors", LOGOS.desk, "Brokerage Firm", 7, "Bengaluru", "Active", "Mohit Verma"),
   row("skyhigh-realtors-3", "SkyHigh Realtors", LOGOS.stripes, "Brokerage Firm", 7, "Bengaluru", "Active", "Mohit Verma"),
 ];
+
+export type CompanyDetail = {
+  id: string;
+  email: string;
+  phone: string;
+  website: string;
+  address: { street: string; state: string; country: string; zipCode: string };
+  deals: {
+    total: number;
+    valueRange: string;
+    types: string[];
+    status: { open: number; inProgress: number; closedWon: number; closedLost: number };
+  };
+  projectTypes: string[];
+  topProjects: Array<{ name: string; type: string; city: string; units: number; status: string }>;
+  contacts: Array<{ name: string; role: string; email: string; phone: string; status: string }>;
+  related: RelatedItem[];
+};
+
+/** The designed overview (Urban Build Group); every other company uses it as a template with their own list values. */
+const designedCompanyDetail: CompanyDetail = {
+  id: "urban-build-group",
+  email: "contact@urbanbuild.com",
+  phone: "+91 98765 43210",
+  website: "www.urbanbuildgroup.com",
+  address: { street: "56 Auricht Road", state: "Karnataka", country: "India", zipCode: "560035" },
+  deals: {
+    total: 21,
+    valueRange: "Rs.98L - Rs.2.95Cr",
+    types: ["Residential Sales", "Commercial Lease", "Land Acquisition"],
+    status: { open: 8, inProgress: 5, closedWon: 6, closedLost: 2 },
+  },
+  projectTypes: ["Villas- 5", "Apartments- 4", "Commercial Spaces- 3"],
+  topProjects: [
+    { name: "Sunrise Enclave", type: "Villa", city: "Bengaluru", units: 40, status: "Completed" },
+    { name: "Palm Greens", type: "Apartment", city: "Bengaluru", units: 32, status: "In Progress" },
+    { name: "Orion Tech Square", type: "Commercial", city: "Hyderabad", units: 16, status: "Upcoming" },
+  ],
+  contacts: [
+    { name: "Jessica Chen", role: "Sales Lead", email: "jessica@urbanbuild.com", phone: "+91 91234 56789", status: "Active" },
+    { name: "Arjun Rao", role: "Legal Head", email: "arjun@urbanbuild.com", phone: "+91 91234 56789", status: "Inactive" },
+    { name: "Priya Nair", role: "Broker", email: "priya@urbanbuild.com", phone: "+91 91234 56789", status: "Active" },
+  ],
+  related: [
+    { label: "Notes" },
+    { label: "Deals", href: "#deals" },
+    { label: "Projects", href: "#projects" },
+    { label: "Activities" },
+    { label: "Attachments" },
+  ],
+};
+
+/** Every row of the list has a page; the other rows reuse the designed page as a template. */
+export const companyDetails: Record<string, CompanyDetail> = Object.fromEntries(
+  companies.map((c) => [c.id, { ...designedCompanyDetail, id: c.id }]),
+);
