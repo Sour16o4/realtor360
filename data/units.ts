@@ -84,3 +84,59 @@ export const units: Unit[] = [
     price: "₹45L",
   },
 ];
+
+export type UnitDetail = {
+  id: string;
+  /** Items of the "Related List" sidebar. */
+  related: Array<{ label: string }>;
+  overview: {
+    unitName: string;
+    type: string;
+    area: string;
+    floor: string;
+    balconies: number;
+    bathrooms: number;
+    price: string;
+    facing: string;
+    furnishing: string;
+  };
+  building: { city: string; floors: number; status: string; website: string };
+  broker: { name: string; role: string; email: string; phone: string };
+  deals: Array<{ name: string; owner: string; status: string; value: string }>;
+  addOns: Array<{ name: string; type: string; status: string; purpose: string }>;
+};
+
+export const unitDetails: Record<string, UnitDetail> = {
+  "unit-a-101": {
+    id: "unit-a-101",
+    related: [
+      { label: "Notes" },
+      { label: "Deals Associate" },
+      { label: "Add-On Units Associated" },
+      { label: "Activities" },
+      { label: "Attachments" },
+    ],
+    overview: {
+      unitName: "Unit A-101",
+      type: "3 BHK Flat",
+      area: "1650 sqft",
+      floor: "1st Floor",
+      balconies: 2,
+      bathrooms: 2,
+      price: "₹1.45 Cr",
+      facing: "East",
+      furnishing: "Semi- Furnished",
+    },
+    building: { city: "Bengaluru", floors: 6, status: "Available", website: "www.sunriseenclave.com" },
+    broker: { name: "Jessica Chen", role: "Sales Executive", email: "jessica.chen@urbanrealty.com", phone: "+91 98765 43210" },
+    deals: [
+      { name: "Sunrise Villa Sale", owner: "Jessica Chen", status: "Closed Won", value: "₹1.45 Cr" },
+      { name: "Aster Premium Buyer", owner: "Rahul Yadav", status: "In Progress", value: "₹1.40 Cr" },
+    ],
+    addOns: [
+      { name: "Unit A-101S", type: "Servant Q", status: "Available", purpose: "Attached to Main Unit" },
+      { name: "Parking Slot #12", type: "Parking", status: "Reserved", purpose: "For Unit A-101" },
+      { name: "Store Room #4", type: "Storage", status: "Available", purpose: "Add-on Storage" },
+    ],
+  },
+};
