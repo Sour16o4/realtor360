@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens taken from the Figma file.
+ * --spacing is 1px, so every spacing/size utility is in pixels:
+ * p-13 = 13px, gap-15 = 15px, w-260 = 260px — the same numbers as in Figma.
+ */
+@theme {
+  --spacing: 1px;
+
+  --color-page: #f6f8fa;
+  --color-ink: #2c2c2c;
+  --color-muted: #666666;
+  --color-subtle: #777777;
+  --color-day: #121212;
+  --color-grid: #bbbbbb;
+  --color-placeholder: #d9d9d9;
+  --color-track: #f5f5f5;
+
+  --color-gold: #d4af37;
+  --color-gold-300: #ebd17d;
+  --color-gold-200: #eedfaf;
+  --color-gold-100: #f6efd7;
+  --color-cream: #f8f5eb;
+
+  --color-success: #48b998;
+  --color-success-bg: #dafff7;
+  --color-danger: #c02547;
+  --color-danger-bg: #fef0f2;
+
+  --color-event-visit: #0eeabe;
+  --color-event-follow-up: #e192ad;
+  --color-event-offer: #ffe100;
+
+  --text-8: 8px;
+  --text-8--line-height: normal;
+  --text-10: 10px;
+  --text-10--line-height: normal;
+  --text-12: 12px;
+  --text-12--line-height: normal;
+  --text-14: 14px;
+  --text-14--line-height: normal;
+  --text-16: 16px;
+  --text-16--line-height: normal;
+  --text-18: 18px;
+  --text-18--line-height: normal;
+  --text-20: 20px;
+  --text-20--line-height: normal;
+  --text-22: 22px;
+  --text-22--line-height: normal;
+  --text-24: 24px;
+  --text-24--line-height: normal;
+  --text-30: 30px;
+  --text-30--line-height: normal;
+
+  --radius-3: 3px;
+  --radius-5: 5px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-20: 20px;
+
+  --shadow-card: 2px 4px 4px 0 rgb(0 0 0 / 0.1);
+  --shadow-nav: 0 2px 4px 0 rgb(0 0 0 / 0.1);
+  --shadow-menu: 0 2px 3px 0 rgb(0 0 0 / 0.15);
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-nav: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    line-height: normal;
+  }
+
+  body {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+  }
+}
