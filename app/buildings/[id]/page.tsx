@@ -83,6 +83,7 @@ export default async function BuildingDetailPage({ params, searchParams }: PageP
             <FieldList
               offset={33}
               columnGap={13}
+              widths={[420, 268]}
               columns={[
                 [
                   ["Building Owner", detail.owner],

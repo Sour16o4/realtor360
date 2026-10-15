@@ -72,6 +72,7 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
           >
             <FieldList
               offset={21}
+              widths={[420, 346]}
               columnGap={-13} // the second column starts slightly under the first one's long website value
               columns={[
                 [
@@ -94,6 +95,7 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
             <FieldList
               offset={39}
               columnGap={77}
+              widths={[406, 202]}
               columns={[
                 [
                   ["Street", address.street],
