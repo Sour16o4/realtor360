@@ -67,7 +67,7 @@ export default async function DevelopmentDetailPage({ params, searchParams }: Pa
             title="Development Information"
             subtitle="Essential development details at a glance"
             paddingTop={57}
-            subtitleWidth={250} // the design wraps this subtitle after "at"
+            titleWidth={250} // the design wraps this subtitle after "at"
             titleShift={{ y: -22 }}
           >
             <FieldList

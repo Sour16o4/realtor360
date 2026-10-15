@@ -36,7 +36,7 @@ export default async function BuildingDetailPage({ params, searchParams }: PageP
         imageSize={[100, 100]}
         imageClassName="mt-7 mb-8" // the photo sits 7px lower than the back button; keeps the header 155px tall
         textClassName="pt-22"
-        actionsClassName="mr-10 mb-13"
+        actionsClassName="mr-10 mb-13 gap-9"
         actions={
           <>
             <HeaderButton variant="gold">Send Email</HeaderButton>
@@ -48,7 +48,7 @@ export default async function BuildingDetailPage({ params, searchParams }: PageP
           title={building.name}
           titleAdornment={<Image src="/icons/arrow-drop-down.svg" alt="" width={27} height={27} />}
           lines={[["Development", building.development], ["Email", building.email]]}
-          linesClassName="mt-4 gap-4 text-14"
+          linesClassName="mt-4 gap-4 text-14 opacity-60"
         />
       </RecordHeader>
 
@@ -77,7 +77,7 @@ export default async function BuildingDetailPage({ params, searchParams }: PageP
             title="Development Information"
             subtitle="Essential development details at a glance"
             paddingTop={57}
-            subtitleWidth={250} // the design wraps this subtitle after "at"
+            titleWidth={250} // the design wraps this subtitle after "at"
             titleShift={{ y: 7 }}
           >
             <FieldList
@@ -98,7 +98,7 @@ export default async function BuildingDetailPage({ params, searchParams }: PageP
             />
           </DetailSection>
 
-          <DetailSection title="Units" subtitle="Details of Units within the Building" subtitleWidth={195} paddingTop={20} titleShift={{ x: -28, y: -18 }}>
+          <DetailSection title="Units" subtitle="Details of Units within the Building" titleWidth={195} paddingTop={20} titleShift={{ x: -28, y: -18 }}>
             <div className="mr-13 mb-15 flex justify-end gap-15 text-14">
               <button type="button" className="h-31 rounded-5 bg-cream px-20">New</button>
               <button type="button" className="h-31 rounded-5 bg-cream px-16">Edit</button>

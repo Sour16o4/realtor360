@@ -15,7 +15,7 @@ type RecordHeaderProps = {
   /** Usually a <HeaderText>; the buttons on the right go in `actions`. */
   children: React.ReactNode;
   actions?: React.ReactNode;
-  /** Space under the buttons; the design uses a different value on some pages. */
+  /** Space under and between the buttons; the design uses different values on some pages. */
   actionsClassName?: string;
 };
 
@@ -28,7 +28,7 @@ export default function RecordHeader({
   textClassName = image ? "pt-12" : "",
   children,
   actions,
-  actionsClassName = "mb-13",
+  actionsClassName = "mb-13 gap-10",
 }: RecordHeaderProps) {
   return (
     <header className="flex items-stretch border-b border-black/25 py-20 pr-25 pl-14">
@@ -46,7 +46,7 @@ export default function RecordHeader({
         />
       )}
       <div className={cn("min-w-0", image ? "ml-18" : "ml-32", textClassName)}>{children}</div>
-      {actions && <div className={cn("ml-auto flex items-end gap-10 self-end pl-16", actionsClassName)}>{actions}</div>}
+      {actions && <div className={cn("ml-auto flex items-end self-end pl-16", actionsClassName)}>{actions}</div>}
     </header>
   );
 }
@@ -58,7 +58,7 @@ type HeaderTextProps = {
   titleClassName?: string;
   /** Lines under the title, e.g. [["Email", "a@b.com"]]; the label is medium weight, both at 60% opacity. */
   lines?: Array<[label: string, value: React.ReactNode]>;
-  /** Spacing and text size of the lines (margin above, gap between lines, font size). */
+  /** Spacing, text size and opacity of the lines. */
   linesClassName?: string;
   /** Anything below the lines, e.g. a status badge. */
   children?: React.ReactNode;
@@ -69,7 +69,7 @@ export function HeaderText({
   titleAdornment,
   titleClassName = "text-22",
   lines = [],
-  linesClassName = "mt-11 gap-8 text-16",
+  linesClassName = "mt-11 gap-8 text-16 opacity-60",
   children,
 }: HeaderTextProps) {
   return (
@@ -78,7 +78,7 @@ export function HeaderText({
         <h1 className={cn("font-semibold text-black", titleClassName)}>{title}</h1>
         {titleAdornment}
       </div>
-      <div className={cn("flex flex-col text-subtle opacity-60", linesClassName)}>
+      <div className={cn("flex flex-col text-subtle", linesClassName)}>
         {lines.map(([label, value]) => (
           <p key={label}>
             <span className="font-medium">{label}:</span> {value}
