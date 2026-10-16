@@ -52,7 +52,7 @@ export const companies: Company[] = [
   row("skyhigh-realtors-3", "SkyHigh Realtors", LOGOS.stripes, "Brokerage Firm", 7, "Bengaluru", "Active", "Mohit Verma"),
 ];
 
-export type CompanyDetail = {
+type CompanyDetail = {
   id: string;
   email: string;
   phone: string;

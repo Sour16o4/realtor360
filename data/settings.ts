@@ -1,4 +1,4 @@
-export type SettingsCard = {
+type SettingsCard = {
   title: string;
   description: string;
   icon: string;

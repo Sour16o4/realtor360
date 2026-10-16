@@ -42,7 +42,7 @@ export const developments: Development[] = Array.from({ length: 5 }, (_, index) 
   index === 0 ? sunriseEnclave : { ...sunriseEnclave, id: `${sunriseEnclave.id}-${index + 1}` },
 );
 
-export type DevelopmentDetail = {
+type DevelopmentDetail = {
   id: string;
   status: string;
   owner: string;

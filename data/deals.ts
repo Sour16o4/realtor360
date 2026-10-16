@@ -43,7 +43,7 @@ export const deals: Deal[] = [
   row("sunrise-villa-sale-3", "Sunrise Villa Sale", "Jessica Chen", "Sunrise Enclave", "Unit A-101 (3 BHK)", "Closed Lost", "₹1.45Cr"),
 ];
 
-export type DealDetail = {
+type DealDetail = {
   id: string;
   /** Only the designed page sets this; the other deals show their own list value. */
   value?: string;

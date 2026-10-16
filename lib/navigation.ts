@@ -1,5 +1,5 @@
 /** `width` and `gap` (space before the item) are the design's pill sizes in px, so the items line up with the Figma navbar. */
-export type NavItem = { label: string; width: number; gap: number; href: string };
+type NavItem = { label: string; width: number; gap: number; href: string };
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "Home", width: 63, gap: 0, href: "/" },

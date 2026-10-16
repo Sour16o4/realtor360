@@ -37,7 +37,7 @@ export const leads: Lead[] = Array.from({ length: 6 }, (_, index) => johnDoe(ind
 /** A value from the "Label: value" pairs of a lead's list row, e.g. leadValue(lead, "Lead Owner"). */
 export const leadValue = (lead: Lead, label: string) => lead.details.find(([l]) => l === label)?.[1] ?? "";
 
-export type LeadDetail = {
+type LeadDetail = {
   id: string;
   /** Only the designed page sets this; the other leads show their own list email. */
   email?: string;

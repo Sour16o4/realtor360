@@ -3,7 +3,7 @@ import type { Deal } from "./deals";
 /** Label, value and an optional nudge (px) the design applies to that row: the value's indent on the left, the label's shift on the right. */
 export type Field = [label: string, value: string, nudge?: number];
 
-export type OfferForm = {
+type OfferForm = {
   buyer: Field[];
   property: Field[];
   offer: Field[];
@@ -12,7 +12,7 @@ export type OfferForm = {
   salesSignature: string;
 };
 
-export type DealSheet = {
+type DealSheet = {
   info: Field[];
   financials: Field[];
   buyer: Field[];

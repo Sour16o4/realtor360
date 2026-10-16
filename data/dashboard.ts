@@ -21,10 +21,10 @@ export const developments = [
   { key: "none", label: "None", color: "var(--color-gold-100)" },
 ] as const;
 
-export type DevelopmentKey = (typeof developments)[number]["key"];
-export type DevelopmentCounts = Record<DevelopmentKey, number>;
+type DevelopmentKey = (typeof developments)[number]["key"];
+type DevelopmentCounts = Record<DevelopmentKey, number>;
 
-export type LeadSource = {
+type LeadSource = {
   label: string;
   count: number;
   percent: number;

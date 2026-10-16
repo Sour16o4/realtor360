@@ -43,7 +43,7 @@ export const contacts: Contact[] = [
   row("emily-mehra-2", "Emily Mehra", "Broker", "Active"),
 ];
 
-export type ContactDetail = {
+type ContactDetail = {
   id: string;
   /** Only the designed page sets these two; the other contacts show their own list email and phone. */
   email?: string;

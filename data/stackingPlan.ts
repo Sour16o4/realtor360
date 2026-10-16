@@ -1,4 +1,4 @@
-export type UnitStatus = "available" | "offer" | "contractSigned" | "closed" | "onHold" | "contractOut";
+type UnitStatus = "available" | "offer" | "contractSigned" | "closed" | "onHold" | "contractOut";
 
 /**
  * Cell fill and Color Key label per status. `hoverLabel` is the text of the cell's hover variant in the design
@@ -17,7 +17,7 @@ export const unitStatuses: Record<UnitStatus, { label: string; color: string; ho
 export const colorKey: UnitStatus[] = ["closed", "contractSigned", "contractOut", "offer", "available", "onHold"];
 
 export type StackingUnit = { unit: string; type: string; area: string; buyer: string; price: string; status: UnitStatus };
-export type StackingFloor = { label: string; units: StackingUnit[] };
+type StackingFloor = { label: string; units: StackingUnit[] };
 export type StackingDevelopment = { name: string; floors: StackingFloor[] };
 
 /** Every unit in the design shows the same text; only its status changes. */

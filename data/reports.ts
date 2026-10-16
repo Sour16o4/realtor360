@@ -66,7 +66,7 @@ export const reports: Report[] = [
   row("company-deals", "Company Deal Report", "Shows companies associated with the most deals.", "Company Reports"),
 ];
 
-export type ReportLead = {
+type ReportLead = {
   source: string;
   owner: string;
   name: string;
@@ -92,7 +92,7 @@ const reportLeads: ReportLead[] = [
 type Col<T> = { header: string; get: (item: T) => string; width?: number; breakAll?: boolean };
 
 /** `columns` are the headers; the first cell of every row is the group label ("Name (count)" on the group's first row, otherwise ""). */
-export type ReportTable = { columns: Array<Pick<Col<never>, "header" | "width" | "breakAll">>; rows: string[][] };
+type ReportTable = { columns: Array<Pick<Col<never>, "header" | "width" | "breakAll">>; rows: string[][] };
 
 /** Groups `items` by `group` (groups in order of first appearance); the group column comes first, then `cols`. */
 function grouped<T>(items: T[], group: Col<T>, cols: Col<T>[]): ReportTable {

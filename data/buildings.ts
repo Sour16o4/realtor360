@@ -80,7 +80,7 @@ export const buildings: Building[] = [
   },
 ];
 
-export type BuildingDetail = {
+type BuildingDetail = {
   id: string;
   owner: string;
   /** Only the designed pages set this; the other buildings show their own list status. */

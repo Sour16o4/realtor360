@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-export const TABS = ["overview", "timeline", "notes", "activities", "attachments"] as const;
-export type DetailTab = (typeof TABS)[number];
+const TABS = ["overview", "timeline", "notes", "activities", "attachments"] as const;
+type DetailTab = (typeof TABS)[number];
 
 /** Reads the ?tab= search param of a page; anything unknown means the Overview tab. */
 export function parseTab(value: string | string[] | undefined): DetailTab {

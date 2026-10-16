@@ -51,7 +51,7 @@ export const attorneyFirms: AttorneyFirm[] = [
   row("prime-advocates-2", "Prime Advocates LLP", "hello@primeadvocates.in", "+91 93412 44456", "Hyderabad", "Inactive"),
 ];
 
-export type AttorneyFirmDetail = {
+type AttorneyFirmDetail = {
   id: string;
   /** Only the designed page sets these; the other firms show their own list phone and email. */
   phone?: string;

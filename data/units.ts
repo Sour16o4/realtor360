@@ -85,7 +85,7 @@ export const units: Unit[] = [
   },
 ];
 
-export type UnitDetail = {
+type UnitDetail = {
   id: string;
   related: RelatedItem[];
   /** Unit name, type and price are not stored: they come from the unit's list row (see `unitCode`, `unitType`). */

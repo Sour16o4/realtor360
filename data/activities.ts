@@ -57,7 +57,7 @@ const contract = (status: string, priority: Activity["priority"], titleWidth: nu
   customer({ title: "Initiate Contract with John", titleWidth, status, priority });
 
 /** Customers tab (frame 44:2), row by row. */
-export const customerActivities: Activity[] = [
+const customerActivities: Activity[] = [
   followUp("Active", "High"),
   followUp("Not Interested", "Low", true),
   contract("Active", "High", 126),
@@ -106,14 +106,14 @@ const openDealRow = (): Activity[] => [
 ];
 
 /** Open Deals tab (frame 44:420): two identical rows and one more card. */
-export const openDealActivities: Activity[] = [
+const openDealActivities: Activity[] = [
   ...openDealRow(),
   ...openDealRow(),
   meeting({ title: "Meeting", status: "Completed", priority: "High" }),
 ];
 
 /** Leads/Contacts tab (frame 44:775), row by row. */
-export const leadContactActivities: Activity[] = [
+const leadContactActivities: Activity[] = [
   meeting({ title: "Test", status: "Completed", priority: "High" }),
   meeting({ title: "Follow Up John", status: "In Progress", priority: "High" }),
   meeting({ title: "Initiate Contract with John", titleWidth: 114, status: "Not Started", priority: "Low" }),
