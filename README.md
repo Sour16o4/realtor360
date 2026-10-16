@@ -2,7 +2,7 @@
 
 A frontend implementation of the Realtor360 Figma design in Next.js, TypeScript and Tailwind CSS.
 
-Live demo: LIVE_URL
+Live demo: https://realtor360-lac.vercel.app
 
 ## Tech stack
 
@@ -69,6 +69,7 @@ The detail tabs (Overview, Timeline, Notes, Activities, Attachments) are selecte
 - Pagination: Prev, Next and the page numbers.
 - Every list row opens its own detail page, and every detail page has a back button to its list.
 - Detail pages: the tabs and the Related List links work (Notes, Activities and Attachments open their tab; section links jump to the section).
+- Activities: the Customers, Open Deals and Leads/Contacts tabs switch with `?tab=`.
 - Building switcher: the arrow next to a building title lists the buildings and opens the one you pick.
 - Deals: the Generate Offer Form button opens the offer form, and its arrow menu opens the deal sheet.
 - Reports: the star in front of a report name toggles. Every report opens its page, and Create Chart opens the chart builder.
@@ -84,6 +85,7 @@ The detail tabs (Overview, Timeline, Notes, Activities, Attachments) are selecte
 - The design draws one record for most detail pages. Records the design does not draw are built from their list row, with the designed record used as the template for every other field. The designed record is unchanged.
 - Filter checkboxes toggle as in the prototype, but the design defines no filtering rules, so the lists are not filtered by them.
 - The design has no data for pagination pages 2 and 3, so they reorder the existing records: page 2 shows them reversed and page 3 rotated by half.
+- The Figma file has no sign-in, user profile or settings sub-pages. User Profile and Sign out in the user menu keep their hover states, and the nine Settings cards are shown as designed. None of them navigate, because the prototype defines no screen for them.
 - Layout is pixel-matched at 1440px. Below that, the pages stay usable: wide content scrolls horizontally inside its container instead of the page, and the navbar pills scroll sideways on narrow screens.
 
 ```
