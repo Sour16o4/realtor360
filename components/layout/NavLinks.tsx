@@ -9,8 +9,9 @@ import { cn } from "@/lib/cn";
 export default function NavLinks() {
   const pathname = usePathname();
 
+  // On narrow screens the pills scroll sideways; the vertical padding keeps focus outlines from being clipped.
   return (
-    <nav className="flex min-w-0 flex-1 items-center">
+    <nav className="-my-4 flex min-w-0 flex-1 items-center overflow-x-auto py-4 [scrollbar-width:none]">
       {NAV_ITEMS.map((item) => {
         const active = isActive(pathname, item.href);
         return (

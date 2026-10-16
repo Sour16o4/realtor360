@@ -6,7 +6,7 @@ export default function SettingsPage() {
   return (
     <main className="mx-auto max-w-1440 px-16 pt-28 pb-30 lg:pr-25 lg:pl-26">
       <h1 className="text-28 font-medium">Settings</h1>
-      <div className="mt-27 grid gap-30 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-27 grid grid-cols-1 gap-30 sm:grid-cols-2 lg:grid-cols-3">
         {settingsCards.map((card) => (
           <section
             key={card.title}

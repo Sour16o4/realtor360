@@ -8,7 +8,7 @@ import { dashboardCallouts, dashboardDealsClosed, dashboardSalesPeople } from "@
 // The charts are the Home ones at the sizes of the Dashboards frame; the cards have no links in the prototype.
 export default function DashboardsPage() {
   return (
-    <main className="mx-auto grid max-w-1440 gap-40 px-16 pt-31 pb-40 xl:grid-cols-2 xl:px-43">
+    <main className="mx-auto grid max-w-1440 grid-cols-1 gap-40 px-16 pt-31 pb-40 xl:grid-cols-2 xl:px-43">
       <div className="flex flex-col gap-40">
         <LeadSourceChart menu size={311} left={143} callouts={dashboardCallouts} className="h-410" />
         <SalesPeopleChart

@@ -17,7 +17,7 @@ type DealDocumentProps = {
 export default function DealDocument({ dealId, title, titleTop, children }: DealDocumentProps) {
   return (
     <main className="pt-20 pb-64">
-      <div className="flex pr-31 pl-26">
+      <div className="flex pr-31 pl-26 print:hidden">
         <Link href={`/deals/${dealId}`} aria-label="Back" className="shrink-0">
           <Image src="/icons/back.svg" alt="" width={38} height={38} />
         </Link>

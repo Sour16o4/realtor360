@@ -37,7 +37,7 @@ export default function RecordHeader({
   actionsClassName = "mb-13 gap-10",
 }: RecordHeaderProps) {
   return (
-    <header className="flex items-stretch border-b border-black/25 py-20 pr-25 pl-14">
+    <header className="flex items-stretch border-b max-md:flex-wrap max-md:gap-y-12 border-black/25 py-20 pr-25 pl-14">
       <Link href={backHref} aria-label="Back" className="shrink-0">
         <Image src="/icons/back.svg" alt="" width={38} height={38} />
       </Link>

@@ -50,7 +50,7 @@ export default function DetailPage({ related, compact = false, addRelatedGap = c
         </p>
       </aside>
 
-      <main className="min-w-0 flex-1">{children}</main>
+      <main className="min-w-0 flex-1 overflow-x-auto">{children}</main>
     </div>
   );
 }

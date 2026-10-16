@@ -17,7 +17,7 @@ type CardProps = {
 /** White dashboard card. Padding and size come from the caller, because they differ per card in the design. */
 export default function Card({ title, menu = false, menuTop = 13, plain = false, className, style, children }: CardProps) {
   return (
-    <section className={cn(!plain && "rounded-20 bg-white shadow-card", menu && "relative", className)} style={style}>
+    <section className={cn(!plain && "rounded-20 bg-white shadow-card", menu && "relative", "max-md:overflow-x-auto", className)} style={style}>
       {title && !plain && <h2 className="text-18 font-medium">{title}</h2>}
       {menu && <Image src="/icons/more-vertical.svg" alt="" width={30} height={30} className="absolute right-16" style={{ top: menuTop }} />}
       {children}

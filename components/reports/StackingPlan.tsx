@@ -40,7 +40,7 @@ export default function StackingPlan({ developments }: { developments: StackingD
     <div className="mt-25 pb-39">
       {developments.map((development, index) => (
         <div key={index}>
-          <section className="flex flex-col gap-25 bg-white p-20">
+          <section className="flex flex-col gap-25 overflow-x-auto bg-white p-20">
             <h2 className="pl-6 text-18 leading-22 font-semibold">{`${index + 1}. Development Name: ${development.name}`}</h2>
             <div className="flex flex-col gap-6">
               {development.floors.map((floor) => (
@@ -65,7 +65,7 @@ export default function StackingPlan({ developments }: { developments: StackingD
       <hr className={cn(SEPARATOR, "mt-51 border-subtle/80")} />
       <section className="mt-23 px-28">
         <h2 className="text-18 leading-22 font-semibold">Color Key</h2>
-        <ul className="mt-12 grid grid-cols-[auto_auto_auto] justify-start gap-x-50 gap-y-12 text-14 font-medium">
+        <ul className="mt-12 grid justify-start md:grid-cols-[auto_auto_auto] gap-x-50 gap-y-12 text-14 font-medium">
           {/* The design's Closed item has a 11px gap, the others 15px. */}
           {colorKey.map((status) => (
             <li key={status} className={cn("flex items-center", status === "closed" ? "gap-11" : "gap-15")}>

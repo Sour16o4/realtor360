@@ -13,7 +13,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
   return (
     <ListPage pages={pages} title="Leads" createLabel="Create Lead" filters={leadFilters} filterSearch="Search by Lead Name" search="Search Lead" tightFilters actionsGap={20}>
       {/* The lead rows span the whole main area, so cancel the page's content padding. */}
-      <div className="-mx-16 -mt-20 lg:-mr-25 lg:-ml-38">
+      <div className="-mx-16 -mt-20 overflow-x-auto lg:-mr-25 lg:-ml-38">
         {rows.map((lead) => (
           <div key={lead.id} className="relative h-136 border-b border-black/12 pt-21 pl-16 hover:bg-white/60 lg:pl-38">
             <div className="flex gap-24">

@@ -5,14 +5,14 @@ import UserMenu from "./UserMenu";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-20 flex h-65 items-center gap-25 bg-white pr-25 pl-26 shadow-nav">
+    <header className="sticky top-0 z-20 flex h-65 items-center gap-25 bg-white pr-25 pl-26 shadow-nav print:hidden">
       <Link href="/" aria-label="Realtor360 home" className="shrink-0">
         <Image src="/icons/logo.svg" alt="Realtor360" width={139} height={28} priority />
       </Link>
 
       <NavLinks />
 
-      <label className="flex h-42 w-152 shrink-0 items-center justify-between rounded-10 bg-page px-10">
+      <label className="hidden h-42 w-152 shrink-0 items-center justify-between rounded-10 bg-page px-10 md:flex">
         <input
           type="search"
           placeholder="Search..."

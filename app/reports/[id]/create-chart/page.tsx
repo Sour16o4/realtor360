@@ -13,7 +13,7 @@ export default async function CreateChartPage({ params }: { params: Promise<{ id
   if (!reports.some((r) => r.id === id)) notFound();
 
   return (
-    <main className="px-26 pt-20 pr-28 pb-40">
+    <main className="overflow-x-auto px-26 pt-20 pr-28 pb-40">
       <div className="flex items-center gap-32">
         <Link href={`/reports/${id}`} aria-label="Back" className="shrink-0">
           <Image src="/icons/back.svg" alt="" width={38} height={38} />

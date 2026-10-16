@@ -108,3 +108,10 @@
     outline-offset: 2px;
   }
 }
+
+/* Print (Export / Export PDF): keep the status colors of the stacking plan and the sheet backgrounds. */
+@media print {
+  body {
+    print-color-adjust: exact;
+  }
+}

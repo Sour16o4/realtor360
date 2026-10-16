@@ -20,7 +20,7 @@ export default async function ReportPage({ params }: { params: Promise<{ id: str
 
   return (
     <main className="px-26 pt-20 pb-40 pr-25">
-      <div className="flex items-end">
+      <div className="flex flex-wrap items-end gap-y-10">
         <Link href="/reports" aria-label="Back" className="shrink-0 self-start">
           <Image src="/icons/back.svg" alt="" width={38} height={38} />
         </Link>
